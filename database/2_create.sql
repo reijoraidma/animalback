@@ -1,10 +1,10 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-04-10 10:18:35.263
+-- Last modification date: 2024-04-10 11:33:03.604
 
 -- tables
 -- Table: animal
 CREATE TABLE animal (
-                        id int  NOT NULL,
+                        id serial  NOT NULL,
                         animal_type_id int  NOT NULL,
                         gender_id int  NULL,
                         breed_id int  NULL,
@@ -16,7 +16,7 @@ CREATE TABLE animal (
 
 -- Table: animal_image
 CREATE TABLE animal_image (
-                              id int  NOT NULL,
+                              id serial  NOT NULL,
                               animal_id int  NOT NULL,
                               image_data bytea  NOT NULL,
                               CONSTRAINT animal_image_pk PRIMARY KEY (id)
@@ -35,7 +35,7 @@ CREATE TABLE animal_type (
 
 -- Table: breed
 CREATE TABLE breed (
-                       id int  NOT NULL,
+                       id serial  NOT NULL,
                        type varchar(255)  NULL,
                        animal_type_id int  NOT NULL,
                        status char(1)  NOT NULL,
@@ -44,14 +44,14 @@ CREATE TABLE breed (
 
 -- Table: gender
 CREATE TABLE gender (
-                        id int  NOT NULL,
+                        id serial  NOT NULL,
                         type varchar(50)  NOT NULL,
                         CONSTRAINT gender_pk PRIMARY KEY (id)
 );
 
 -- Table: location
 CREATE TABLE location (
-                          id int  NOT NULL,
+                          id serial  NOT NULL,
                           post_id int  NOT NULL,
                           location_name int  NOT NULL,
                           latitude decimal(14,12)  NOT NULL,
@@ -87,14 +87,14 @@ CREATE TABLE profile (
 
 -- Table: role
 CREATE TABLE role (
-                      id int  NOT NULL,
+                      id serial  NOT NULL,
                       name varchar(50)  NOT NULL,
                       CONSTRAINT role_pk PRIMARY KEY (id)
 );
 
 -- Table: user
 CREATE TABLE "user" (
-                        id int  NOT NULL,
+                        id serial  NOT NULL,
                         role_id int  NOT NULL,
                         email varchar(255)  NOT NULL,
                         password varchar(255)  NOT NULL,
