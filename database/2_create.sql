@@ -4,66 +4,60 @@
 -- tables
 -- Table: animal
 CREATE TABLE animal (
-                        id serial  NOT NULL,
+                        id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                         animal_type_id int  NOT NULL,
                         gender_id int  NULL,
                         breed_id int  NULL,
                         size varchar(255)  NULL,
                         age varchar(255)  NULL,
-                        color varchar(255)  NULL,
-                        CONSTRAINT id PRIMARY KEY (id)
+                        color varchar(255)  NULL
 );
 
 -- Table: animal_image
 CREATE TABLE animal_image (
-                              id serial  NOT NULL,
+                              id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                               animal_id int  NOT NULL,
-                              image_data bytea  NOT NULL,
-                              CONSTRAINT animal_image_pk PRIMARY KEY (id)
+                              image_data bytea  NOT NULL
 );
 
 CREATE INDEX animal_image_idx_1 on animal_image (animal_id ASC);
 
 -- Table: animal_type
 CREATE TABLE animal_type (
-                             id serial  NOT NULL,
+                             id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                              name varchar(255)  NOT NULL,
                              image_data bytea  NOT NULL,
-                             status char(1)  NOT NULL,
-                             CONSTRAINT animal_type_pk PRIMARY KEY (id)
+                             status char(1)  NOT NULL
 );
 
 -- Table: breed
 CREATE TABLE breed (
-                       id serial  NOT NULL,
+                       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                        type varchar(255)  NULL,
                        animal_type_id int  NOT NULL,
-                       status char(1)  NOT NULL,
-                       CONSTRAINT breed_pk PRIMARY KEY (id)
+                       status char(1)  NOT NULL
 );
 
 -- Table: gender
 CREATE TABLE gender (
-                        id serial  NOT NULL,
-                        type varchar(50)  NOT NULL,
-                        CONSTRAINT gender_pk PRIMARY KEY (id)
+                        id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+                        type varchar(50)  NOT NULL
 );
 
 -- Table: location
 CREATE TABLE location (
-                          id serial  NOT NULL,
+                          id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                           post_id int  NOT NULL,
                           location_name int  NOT NULL,
                           latitude decimal(14,12)  NOT NULL,
                           longitude decimal(14,12)  NOT NULL,
                           date date  NOT NULL,
-                          comment varchar(255)  NOT NULL,
-                          CONSTRAINT location_pk PRIMARY KEY (id)
+                          comment varchar(255)  NOT NULL
 );
 
 -- Table: post
 CREATE TABLE post (
-                      id serial  NOT NULL,
+                      id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                       user_id int  NOT NULL,
                       animal_id int  NOT NULL,
                       type char(1)  NOT NULL,
@@ -72,34 +66,30 @@ CREATE TABLE post (
                       city varchar(255)  NULL,
                       county varchar(255)  NULL,
                       address varchar(255)  NULL,
-                      info varchar(255)  NULL,
-                      CONSTRAINT post_pk PRIMARY KEY (id)
+                      info varchar(255)  NULL
 );
 
 -- Table: profile
 CREATE TABLE profile (
-                         id serial  NOT NULL,
+                         id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                          user_id int  NOT NULL,
                          name varchar(255)  NOT NULL,
-                         image_data bytea  NULL,
-                         CONSTRAINT profile_pk PRIMARY KEY (id)
+                         image_data bytea  NULL
 );
 
 -- Table: role
 CREATE TABLE role (
-                      id serial  NOT NULL,
-                      name varchar(50)  NOT NULL,
-                      CONSTRAINT role_pk PRIMARY KEY (id)
+                      id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+                      name varchar(50)  NOT NULL
 );
 
 -- Table: user
 CREATE TABLE "user" (
-                        id serial  NOT NULL,
+                        id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                         role_id int  NOT NULL,
                         email varchar(255)  NOT NULL,
                         password varchar(255)  NOT NULL,
-                        CONSTRAINT user_ak_1 UNIQUE (email) NOT DEFERRABLE  INITIALLY IMMEDIATE,
-                        CONSTRAINT user_pk PRIMARY KEY (id)
+                        CONSTRAINT user_ak_1 UNIQUE (email) NOT DEFERRABLE  INITIALLY IMMEDIATE
 );
 
 -- foreign keys
