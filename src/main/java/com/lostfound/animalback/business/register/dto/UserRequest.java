@@ -18,8 +18,8 @@ import java.io.Serializable;
 public class UserRequest implements Serializable {
 
     @NotNull
-    @Size(max = 255)
     private String name;
+
     @NotNull
     @Size(max = 255)
     private String email;
