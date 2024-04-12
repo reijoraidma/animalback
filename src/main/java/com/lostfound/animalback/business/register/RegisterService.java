@@ -1,6 +1,10 @@
 package com.lostfound.animalback.business.register;
 
 import com.lostfound.animalback.business.register.dto.UserRequest;
+import com.lostfound.animalback.domain.profile.Profile;
+import com.lostfound.animalback.domain.profile.ProfileRepository;
+import com.lostfound.animalback.domain.role.Role;
+import com.lostfound.animalback.domain.role.RoleRepository;
 import com.lostfound.animalback.domain.user.User;
 import com.lostfound.animalback.domain.user.UserMapper;
 import com.lostfound.animalback.domain.user.UserRepository;
@@ -12,30 +16,31 @@ import org.springframework.stereotype.Service;
 public class RegisterService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final UserMapper userMapper;
-
-
+    private final ProfileRepository profileRepository;
 
 
     public void registerUser(UserRequest userRequest) {
         User user = createAndSaveUser(userRequest);
-        // lisa profiili info
-        // loo uus profiili objekt
-        // lisa külge vajalik info
-        // salvesta profiil
-
+        createAndSaveProfile(userRequest, user);
     }
-
     private User createAndSaveUser(UserRequest userRequest) {
-        User user = createUser(userRequest);
-        // todo: enne kui salvestad, pane leitud roll userile külge
+        User user = userMapper.toUser(userRequest);
+        setCustomerRole(user);
         userRepository.save(user);
         return user;
     }
-
-    private User createUser(UserRequest userRequest) {
-        // todo: otsi ülesse roll "customer", ID 2 abil
-        User user = userMapper.toUser(userRequest);
-        return user;
+    private void setCustomerRole(User user) {
+        Role role = roleRepository.findRoleById(2);
+        user.setRole(role);
     }
+    private void createAndSaveProfile(UserRequest userRequest, User user) {
+        Profile profile = new Profile();
+        profile.setUser(user);
+        profile.setName(userRequest.getName());
+        // todo kas on pilt, kui jah siis vaja vaja string byte massiiviks ymber konvertida ja siis panna profilele kylge
+        profileRepository.save(profile);
+    }
+
 }
