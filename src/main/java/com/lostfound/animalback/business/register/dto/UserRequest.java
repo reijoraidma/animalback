@@ -26,4 +26,6 @@ public class UserRequest implements Serializable {
     @NotNull
     @Size(max = 255)
     private String password;
+
+    private String imageData;
 }
