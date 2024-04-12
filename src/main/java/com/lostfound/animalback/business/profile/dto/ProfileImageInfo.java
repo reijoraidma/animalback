@@ -1,7 +1,5 @@
 package com.lostfound.animalback.business.profile.dto;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,10 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileInfo implements Serializable {
-    private String userEmail;
-    @NotNull
-    @Size(max = 255)
+public class ProfileImageInfo implements Serializable {
     private String name;
     private String imageData;
 }
