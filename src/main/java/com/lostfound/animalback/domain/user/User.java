@@ -1,6 +1,6 @@
 package com.lostfound.animalback.domain.user;
 
-import com.lostfound.animalback.domain.Role;
+import com.lostfound.animalback.domain.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
