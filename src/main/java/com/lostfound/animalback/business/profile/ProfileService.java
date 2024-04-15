@@ -1,5 +1,7 @@
 package com.lostfound.animalback.business.profile;
 
+import com.lostfound.animalback.business.profile.dto.ImageUpdate;
+import com.lostfound.animalback.business.profile.dto.PasswordUpdate;
 import com.lostfound.animalback.business.profile.dto.ProfileInfo;
 import com.lostfound.animalback.business.profile.dto.ProfileUpdate;
 import com.lostfound.animalback.domain.profile.Profile;
@@ -10,6 +12,7 @@ import com.lostfound.animalback.domain.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import util.StringConverter;
 
 @Service
 @AllArgsConstructor
@@ -43,4 +46,19 @@ public class ProfileService {
     }
 
 
+    public void updateImage(Integer profileId, ImageUpdate imageUpdate) {
+        Profile profile = profileRepository.getReferenceById(profileId);
+        profile.setImageData(StringConverter.stringToBytes(imageUpdate.getImageData()));
+        profileRepository.save(profile);
+    }
+
+    public void updatePassword(Integer profileId, PasswordUpdate passwordUpdate) {
+        User user = profileRepository.getProfile(profileId).getUser();
+        String oldPassword = user.getPassword();
+        if (oldPassword.equals(passwordUpdate.getOldPassword())) {
+            user.setPassword(passwordUpdate.getNewPassword());
+            userRepository.save(user);
+        }
+
+    }
 }
