@@ -10,37 +10,45 @@ import com.lostfound.animalback.domain.user.UserMapper;
 import com.lostfound.animalback.domain.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import util.StringConverter;
 
 @Service
 @AllArgsConstructor
 public class RegisterService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final UserMapper userMapper;
     private final ProfileRepository profileRepository;
-    private final RoleRepository roleRepository;
 
 
     public void registerUser(UserRequest userRequest) {
         User user = createAndSaveUser(userRequest);
         createAndSaveProfile(userRequest, user);
     }
-
     private User createAndSaveUser(UserRequest userRequest) {
         User user = userMapper.toUser(userRequest);
-        setUserRoleAsCustomer(user);
-        return userRepository.save(user);
+        setCustomerRole(user);
+        userRepository.save(user);
+        return user;
     }
-
-    private void setUserRoleAsCustomer(User user) {
+    private void setCustomerRole(User user) {
         Role role = roleRepository.findRoleById(2);
         user.setRole(role);
     }
-
     private void createAndSaveProfile(UserRequest userRequest, User user) {
         Profile profile = new Profile();
         profile.setUser(user);
+        handleSetImageData(userRequest, profile);
         profile.setName(userRequest.getName());
         profileRepository.save(profile);
     }
+
+    private static void handleSetImageData(UserRequest userRequest, Profile profile) {
+        String imageData = userRequest.getImageData();
+        if (!imageData.isEmpty()){
+            profile.setImageData(StringConverter.stringToBytes((imageData)));
+        }
+    }
+
 }
