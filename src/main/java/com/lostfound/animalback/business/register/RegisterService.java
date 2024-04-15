@@ -10,6 +10,7 @@ import com.lostfound.animalback.domain.user.UserMapper;
 import com.lostfound.animalback.domain.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import util.StringConverter;
 
 @Service
 @AllArgsConstructor
@@ -38,9 +39,16 @@ public class RegisterService {
     private void createAndSaveProfile(UserRequest userRequest, User user) {
         Profile profile = new Profile();
         profile.setUser(user);
+        handleSetImageData(userRequest, profile);
         profile.setName(userRequest.getName());
-        // todo kas on pilt, kui jah siis vaja vaja string byte massiiviks ymber konvertida ja siis panna profilele kylge
         profileRepository.save(profile);
+    }
+
+    private static void handleSetImageData(UserRequest userRequest, Profile profile) {
+        String imageData = userRequest.getImageData();
+        if (!imageData.isEmpty()){
+            profile.setImageData(StringConverter.stringToBytes((imageData)));
+        }
     }
 
 }

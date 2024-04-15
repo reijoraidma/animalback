@@ -1,6 +1,6 @@
-package com.lostfound.animalback.business.register.dto;
+package com.lostfound.animalback.business.profile.dto;
 
-import com.lostfound.animalback.domain.user.User;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -10,22 +10,16 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * DTO for {@link User}
+ * DTO for {@link com.lostfound.animalback.domain.profile.Profile}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequest implements Serializable {
-
+public class ProfileInfo implements Serializable {
+    private String userEmail;
     @NotNull
+    @Size(max = 255)
     private String name;
-
-    @NotNull
-    @Size(max = 255)
-    private String email;
-    @NotNull
-    @Size(max = 255)
-    private String password;
 
     private String imageData;
 }
