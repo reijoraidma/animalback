@@ -1,5 +1,6 @@
 package com.lostfound.animalback.business.profile.dto;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,5 +20,6 @@ public class ProfileInfo implements Serializable {
     @NotNull
     @Size(max = 255)
     private String name;
+
     private String imageData;
 }

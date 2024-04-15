@@ -1,8 +1,7 @@
 package com.lostfound.animalback.business.profile;
 
-import com.lostfound.animalback.business.profile.dto.ProfileImageInfo;
 import com.lostfound.animalback.business.profile.dto.ProfileInfo;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import com.lostfound.animalback.business.profile.dto.ProfileUpdate;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,17 +18,9 @@ public class ProfileController {
 
 
 
-
-
-
-
-
-
-
-
-    @PutMapping("/profile/{profileId}")
-    public void updateProfile(@PathVariable Integer profileId, @RequestBody ProfileImageInfo profileImageInfo) {
-        profileService.updateProfile(profileId, profileImageInfo);
+    @PatchMapping("/profile/{profileId}")
+    public void updateProfile(@PathVariable Integer profileId, @RequestBody ProfileUpdate profileUpdate) {
+        profileService.updateProfile(profileId, profileUpdate);
     }
 
 }
