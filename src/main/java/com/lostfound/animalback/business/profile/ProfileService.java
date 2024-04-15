@@ -67,12 +67,17 @@ public class ProfileService {
 
     }
 
-@Transactional
-    public void deleteProfile(Integer profileId) {
-    int userId = getUserIdBy(profileId);
-    profileRepository.deleteProfileBy(profileId);
-    deleteUser(userId);
-}
+    @Transactional
+    public void deleteProfile(Integer profileId, String password) {
+        int userId = getUserIdBy(profileId);
+        if (userRepository.getReferenceById(userId).getPassword().equals(password)) {
+            profileRepository.deleteProfileBy(profileId);
+            deleteUser(userId);
+        } else {
+            throw new ForbiddenException(INCORRECT_PASSWORD.getMessage(), INCORRECT_PASSWORD.getErrorCode());
+        }
+
+    }
 
     private int getUserIdBy(Integer profileId) {
         return profileRepository.getProfile(profileId).getUser().getId();

@@ -1,9 +1,6 @@
 package com.lostfound.animalback.business.profile;
 
-import com.lostfound.animalback.business.profile.dto.ImageUpdate;
-import com.lostfound.animalback.business.profile.dto.PasswordUpdate;
-import com.lostfound.animalback.business.profile.dto.ProfileInfo;
-import com.lostfound.animalback.business.profile.dto.ProfileUpdate;
+import com.lostfound.animalback.business.profile.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +31,8 @@ public class ProfileController {
     }
 
     @DeleteMapping("/profile/{profileId}")
-    public void deleteProfile(@PathVariable Integer profileId) {
-        profileService.deleteProfile(profileId);
+    public void deleteProfile(@PathVariable Integer profileId , @RequestParam String password) {
+        profileService.deleteProfile(profileId, password);
     }
 
 
