@@ -67,5 +67,19 @@ public class ProfileService {
 
     }
 
+@Transactional
+    public void deleteProfile(Integer profileId) {
+    int userId = getUserIdBy(profileId);
+    profileRepository.deleteProfileBy(profileId);
+    deleteUser(userId);
+}
 
+    private int getUserIdBy(Integer profileId) {
+        return profileRepository.getProfile(profileId).getUser().getId();
+    }
+
+    private void deleteUser(int userId) {
+        User user = userRepository.getReferenceById(userId);
+        userRepository.deleteUserBy(user.getId());
+    }
 }

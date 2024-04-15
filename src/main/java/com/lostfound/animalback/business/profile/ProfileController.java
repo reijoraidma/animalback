@@ -33,6 +33,10 @@ public class ProfileController {
         profileService.updatePassword(profileId, passwordUpdate);
     }
 
+    @DeleteMapping("/profile/{profileId}")
+    public void deleteProfile(@PathVariable Integer profileId) {
+        profileService.deleteProfile(profileId);
+    }
 
 
 
