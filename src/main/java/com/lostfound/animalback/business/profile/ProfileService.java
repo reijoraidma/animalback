@@ -9,10 +9,13 @@ import com.lostfound.animalback.domain.profile.ProfileMapper;
 import com.lostfound.animalback.domain.profile.ProfileRepository;
 import com.lostfound.animalback.domain.user.User;
 import com.lostfound.animalback.domain.user.UserRepository;
+import com.lostfound.animalback.infrastructure.exception.ForbiddenException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import util.StringConverter;
+
+import static com.lostfound.animalback.infrastructure.error.Error.INCORRECT_PASSWORD;
 
 @Service
 @AllArgsConstructor
@@ -58,7 +61,11 @@ public class ProfileService {
         if (oldPassword.equals(passwordUpdate.getOldPassword())) {
             user.setPassword(passwordUpdate.getNewPassword());
             userRepository.save(user);
+        } else {
+            throw new ForbiddenException(INCORRECT_PASSWORD.getMessage(), INCORRECT_PASSWORD.getErrorCode());
         }
 
     }
+
+
 }
