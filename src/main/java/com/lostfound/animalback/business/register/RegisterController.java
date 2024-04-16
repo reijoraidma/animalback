@@ -14,7 +14,6 @@ public class RegisterController {
     @PostMapping("/register")
     public void registerUser(@RequestBody UserRequest userRequest) {
         registerService.registerUser(userRequest);
-
     }
 
 }

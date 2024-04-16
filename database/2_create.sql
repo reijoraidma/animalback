@@ -66,7 +66,8 @@ CREATE TABLE post (
                       city varchar(255)  NULL,
                       county varchar(255)  NULL,
                       address varchar(255)  NULL,
-                      info varchar(255)  NULL
+                      info varchar(255)  NULL,
+                      CONSTRAINT post_pk PRIMARY KEY (id)
 );
 
 -- Table: profile
@@ -89,7 +90,9 @@ CREATE TABLE "user" (
                         role_id int  NOT NULL,
                         email varchar(255)  NOT NULL,
                         password varchar(255)  NOT NULL,
-                        CONSTRAINT user_ak_1 UNIQUE (email) NOT DEFERRABLE  INITIALLY IMMEDIATE
+                        status char(1)  NOT NULL,
+                        CONSTRAINT user_ak_1 UNIQUE (email) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+                        CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
 -- foreign keys

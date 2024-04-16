@@ -33,14 +33,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 
 //    @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        ApiError apiError = new ApiError();
-        String message = "Invalid request body content. ";
-        message = message + exception.getMessage();
-        apiError.setMessage(message);
-        apiError.setErrorCode(666);
-        return handleExceptionInternal(exception, apiError, headers, HttpStatus.BAD_REQUEST, request);
-    }
+//    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
+//        ApiError apiError = new ApiError();
+//        String message = "Invalid request body content. ";
+//        message = message + exception.getMessage();
+//        apiError.setMessage(message);
+//        apiError.setErrorCode(666);
+//        return handleExceptionInternal(exception, apiError, headers, HttpStatus.BAD_REQUEST, request);
+//    }
 
 //    @Override
 //    protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {

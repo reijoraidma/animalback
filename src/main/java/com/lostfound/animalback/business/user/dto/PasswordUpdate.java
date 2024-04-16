@@ -1,4 +1,4 @@
-package com.lostfound.animalback.business.profile.dto;
+package com.lostfound.animalback.business.user.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,18 +9,17 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * DTO for {@link com.lostfound.animalback.domain.profile.Profile}
+ * DTO for {@link com.lostfound.animalback.domain.user.User}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileUpdate implements Serializable {
+public class PasswordUpdate implements Serializable {
+    @NotNull
+    @Size(max = 255)
+    private String oldPassword;
 
     @NotNull
     @Size(max = 255)
-    private String userEmail;
-
-    @NotNull
-    @Size(max = 255)
-    private String name;
+    private String newPassword;
 }
