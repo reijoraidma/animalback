@@ -1,5 +1,6 @@
 package com.lostfound.animalback.business.profile;
 
+import com.lostfound.animalback.business.profile.dto.ImageUpdate;
 import com.lostfound.animalback.business.profile.dto.ProfileInfo;
 import com.lostfound.animalback.business.profile.dto.ProfileUpdate;
 import lombok.AllArgsConstructor;
