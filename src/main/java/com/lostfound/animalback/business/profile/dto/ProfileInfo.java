@@ -1,6 +1,5 @@
 package com.lostfound.animalback.business.profile.dto;
 
-import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

@@ -9,7 +9,6 @@ import com.lostfound.animalback.domain.profile.ProfileRepository;
 import com.lostfound.animalback.domain.user.User;
 import com.lostfound.animalback.domain.user.UserRepository;
 import com.lostfound.animalback.infrastructure.exception.ForbiddenException;
-import com.lostfound.animalback.infrastructure.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
