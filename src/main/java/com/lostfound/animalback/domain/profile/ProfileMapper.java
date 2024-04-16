@@ -1,14 +1,14 @@
 package com.lostfound.animalback.domain.profile;
 
 import com.lostfound.animalback.business.profile.dto.ProfileInfo;
-import com.lostfound.animalback.business.profile.dto.ProfileUpdate;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import util.StringConverter;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, imports = {StringConverter.class})
 public interface ProfileMapper {
-
-    Profile profile = new  Profile();
 
     @Mapping(source = "name", target = "name")
     @Mapping(source = "user.email", target = "userEmail")

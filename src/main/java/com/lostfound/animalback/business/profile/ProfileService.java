@@ -1,7 +1,6 @@
 package com.lostfound.animalback.business.profile;
 
 import com.lostfound.animalback.business.profile.dto.ImageUpdate;
-import com.lostfound.animalback.business.profile.dto.PasswordUpdate;
 import com.lostfound.animalback.business.profile.dto.ProfileInfo;
 import com.lostfound.animalback.business.profile.dto.ProfileUpdate;
 import com.lostfound.animalback.domain.profile.Profile;
@@ -44,8 +43,8 @@ public class ProfileService {
     }
 
     public ProfileInfo getProfile(Integer profileId) {
-        ProfileInfo profileInfo = profileMapper.toProfileInfo(profileRepository.getProfile(profileId));
-        return profileInfo;
+        Profile profile = profileRepository.getReferenceById(profileId);
+        return profileMapper.toProfileInfo(profile);
     }
 
 
@@ -55,23 +54,13 @@ public class ProfileService {
         profileRepository.save(profile);
     }
 
-    public void updatePassword(Integer profileId, PasswordUpdate passwordUpdate) {
-        User user = profileRepository.getProfile(profileId).getUser();
-        String oldPassword = user.getPassword();
-        if (oldPassword.equals(passwordUpdate.getOldPassword())) {
-            user.setPassword(passwordUpdate.getNewPassword());
-            userRepository.save(user);
-        } else {
-            throw new ForbiddenException(INCORRECT_PASSWORD.getMessage(), INCORRECT_PASSWORD.getErrorCode());
-        }
 
-    }
 
     @Transactional
     public void deleteProfile(Integer profileId, String password) {
         int userId = getUserIdBy(profileId);
         if (userRepository.getReferenceById(userId).getPassword().equals(password)) {
-            profileRepository.deleteProfileBy(profileId);
+            profileRepository.deleteById(profileId);
             deleteUser(userId);
         } else {
             throw new ForbiddenException(INCORRECT_PASSWORD.getMessage(), INCORRECT_PASSWORD.getErrorCode());
@@ -80,7 +69,7 @@ public class ProfileService {
     }
 
     private int getUserIdBy(Integer profileId) {
-        return profileRepository.getProfile(profileId).getUser().getId();
+        return profileRepository.getReferenceById(profileId).getUser().getId();
     }
 
     private void deleteUser(int userId) {

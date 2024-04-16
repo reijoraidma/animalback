@@ -31,4 +31,8 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @NotNull
+    @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
+    private String status;
+
 }

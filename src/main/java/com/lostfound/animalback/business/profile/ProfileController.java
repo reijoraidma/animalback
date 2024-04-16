@@ -7,15 +7,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 public class ProfileController {
+
     private ProfileService profileService;
 
     @GetMapping("/profile/{profileId}")
     public ProfileInfo getProfile(@PathVariable Integer profileId) {
         return profileService.getProfile(profileId);
     }
-
-
-
 
     @PatchMapping("/profile/{profileId}")
     public void updateProfile(@PathVariable Integer profileId, @RequestBody ProfileUpdate profileUpdate) {
@@ -25,17 +23,6 @@ public class ProfileController {
     public void updateProfileImage(@PathVariable Integer profileId, @RequestBody ImageUpdate imageUpdate) {
         profileService.updateImage(profileId, imageUpdate);
     }
-    @PatchMapping("/profile/{profileId}/password")
-    public void updateProfilePassword(@PathVariable Integer profileId, @RequestBody PasswordUpdate passwordUpdate) {
-        profileService.updatePassword(profileId, passwordUpdate);
-    }
-
-    @DeleteMapping("/profile/{profileId}")
-    public void deleteProfile(@PathVariable Integer profileId , @RequestParam String password) {
-        profileService.deleteProfile(profileId, password);
-    }
-
-
 
 
 }

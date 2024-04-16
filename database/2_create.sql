@@ -98,6 +98,7 @@ CREATE TABLE "user" (
                         role_id int  NOT NULL,
                         email varchar(255)  NOT NULL,
                         password varchar(255)  NOT NULL,
+                        status char(1)  NOT NULL,
                         CONSTRAINT user_ak_1 UNIQUE (email) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                         CONSTRAINT user_pk PRIMARY KEY (id)
 );

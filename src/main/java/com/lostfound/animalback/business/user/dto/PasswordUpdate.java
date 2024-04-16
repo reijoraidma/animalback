@@ -1,4 +1,4 @@
-package com.lostfound.animalback.business.profile.dto;
+package com.lostfound.animalback.business.user.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
