@@ -5,9 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 
-    
-
-    @Query("select p from Profile p where p.id = :ProfileId")
-    Profile getProfile(Integer ProfileId);
+    @Query("select p from Profile p where p.id = :profileId")
+    Profile getProfile(Integer profileId);
 
 }

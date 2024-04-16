@@ -16,6 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfileInfo implements Serializable {
+    @NotNull
     private String userEmail;
     @NotNull
     @Size(max = 255)

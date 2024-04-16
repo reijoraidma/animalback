@@ -9,15 +9,13 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * DTO for {@link com.lostfound.animalback.domain.profile.Profile}
+ * DTO for {@link com.lostfound.animalback.domain.user.User}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileUpdate implements Serializable {
-    @NotNull
-    private String userEmail;
+public class Password implements Serializable {
     @NotNull
     @Size(max = 255)
-    private String name;
+    private String password;
 }
