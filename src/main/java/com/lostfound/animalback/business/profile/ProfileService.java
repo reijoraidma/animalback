@@ -12,6 +12,9 @@ import com.lostfound.animalback.infrastructure.exception.ForbiddenException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import util.StringConverter;
+
+import static com.lostfound.animalback.infrastructure.error.Error.INCORRECT_PASSWORD;
 
 @Service
 @AllArgsConstructor
