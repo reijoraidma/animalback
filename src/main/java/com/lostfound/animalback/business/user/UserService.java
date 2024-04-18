@@ -7,6 +7,7 @@ import com.lostfound.animalback.infrastructure.exception.ForbiddenException;
 import com.lostfound.animalback.infrastructure.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
+import static com.lostfound.animalback.business.Status.DEACTIVE;
 import static com.lostfound.animalback.infrastructure.error.Error.INCORRECT_PASSWORD;
 
 @Service
@@ -32,7 +33,7 @@ public class UserService {
     public void deleteUser(Integer userId, String validationPassword) {
         User user = userRepository.getReferenceById(userId);
         ValidationService.validateCorrectPassword(validationPassword, user.getPassword());
-        user.setStatus("D");
+        user.setStatus(DEACTIVE);
         userRepository.save(user);
     }
 

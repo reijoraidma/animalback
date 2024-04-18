@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.lostfound.animalback.business.Status.ACTIVE;
+
 @Service
 @AllArgsConstructor
 public class AnimalTypeService {
@@ -17,7 +19,7 @@ public class AnimalTypeService {
     private final AnimalTypeMapper animalTypeMapper;
     public List<AnimalTypeInfo> getAnimalTypes() {
 
-        List<AnimalType> animalTypes = animalTypeRepository.findAnimalTypeByStatus("A");
+        List<AnimalType> animalTypes = animalTypeRepository.findAnimalTypeByStatus(ACTIVE);
         return  animalTypeMapper.toAnimalTypeInfos(animalTypes);
 
     }

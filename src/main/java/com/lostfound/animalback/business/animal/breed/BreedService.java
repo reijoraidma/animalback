@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.lostfound.animalback.business.Status.ACTIVE;
 import static com.lostfound.animalback.infrastructure.error.Error.BREED_ALREADY_EXISTS;
+import static com.lostfound.animalback.infrastructure.error.Error.BREED_NOT_EXISTING;
 
 @AllArgsConstructor
 @Service
@@ -20,20 +22,30 @@ public class BreedService {
     private final BreedMapper breedMapper;
 
     public List<BreedResponse> getBreeds(Integer animalTypeId) {
-        List<Breed> breedResponses = breedRepository.getBreedsBy("A", animalTypeId);
+        List<Breed> breedResponses = breedRepository.getBreedsBy(ACTIVE, animalTypeId);
         return breedMapper.toBreedResponseList(breedResponses);
     }
 
-
     public void addBreed(BreedSave breedSave) {
         Breed breed = breedMapper.toBreed(breedSave);
-        if (breedRepository.breedExists(breed.getType(), breed.getAnimalType().getId())) {
+        if (breedRepository.breedExistsBy(breed.getType(), breed.getAnimalType().getId())) {
             throw new ForbiddenException(BREED_ALREADY_EXISTS.getMessage(), BREED_ALREADY_EXISTS.getErrorCode());
         } else {
-            breed.setStatus("A");
             breedRepository.save(breed);
         }
     }
 
+    public void updateBreedStatus(String status, Integer breedId) {
+        if (breedRepository.breedIdExists(breedId)) {
+            Breed breed = breedRepository.getReferenceById(breedId);
+            breed.setStatus(status);
+            breedRepository.save(breed);
+        } else {
+            throw new ForbiddenException(BREED_NOT_EXISTING.getMessage(), BREED_NOT_EXISTING.getErrorCode());
+        }
+    }
 
+    public void deleteBreed(Integer breedId) {
+        breedRepository.deleteById(breedId);
+    }
 }
