@@ -10,4 +10,10 @@ public interface BreedRepository extends JpaRepository<Breed, Integer> {
 
     @Query("select b from Breed b where b.status = ?1 and b.animalType.id = ?2")
     List<Breed> getBreedsBy(String status, Integer animalTypeId);
+
+
+    @Query("select (count(b) > 0) from Breed b where b.type = ?1 and b.animalType.id = ?2")
+    boolean breedExists(String type, Integer animalTypeId);
+
+
 }

@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum Error {
     INCORRECT_CREDENTIALS("Vale kasutajanimi või parool", 111),
-    INCORRECT_PASSWORD("Vale parool", 333);
+    INCORRECT_PASSWORD("Vale parool", 333),
+    BREED_ALREADY_EXISTS("Selline tõug on juba olemas", 23505);
 
     private final String message;
     private final int errorCode;

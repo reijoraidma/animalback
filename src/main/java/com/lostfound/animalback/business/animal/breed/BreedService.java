@@ -5,10 +5,13 @@ import com.lostfound.animalback.business.animal.breed.dto.BreedSave;
 import com.lostfound.animalback.domain.animal.breed.Breed;
 import com.lostfound.animalback.domain.animal.breed.BreedMapper;
 import com.lostfound.animalback.domain.animal.breed.BreedRepository;
+import com.lostfound.animalback.infrastructure.exception.ForbiddenException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.lostfound.animalback.infrastructure.error.Error.BREED_ALREADY_EXISTS;
 
 @AllArgsConstructor
 @Service
@@ -24,7 +27,13 @@ public class BreedService {
 
     public void addBreed(BreedSave breedSave) {
         Breed breed = breedMapper.toBreed(breedSave);
-        breed.setStatus("A");
-        breedRepository.save(breed);
+        if (breedRepository.breedExists(breed.getType(), breed.getAnimalType().getId())) {
+            throw new ForbiddenException(BREED_ALREADY_EXISTS.getMessage(), BREED_ALREADY_EXISTS.getErrorCode());
+        } else {
+            breed.setStatus("A");
+            breedRepository.save(breed);
+        }
     }
+
+
 }
