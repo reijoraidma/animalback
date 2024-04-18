@@ -18,4 +18,8 @@ public class StringConverter {
         return string.getBytes(StandardCharsets.UTF_8);
     }
 
+    public static String uppercaseAllLettersRemoveWhitespace(String string) {
+        return string.replaceAll("\\s+", "").toUpperCase();
+    }
+
 }

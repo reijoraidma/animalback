@@ -1,6 +1,7 @@
 package com.lostfound.animalback.domain.animal.animaltype;
 
 import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfo;
+import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfoSave;
 import org.mapstruct.*;
 import util.StringConverter;
 
@@ -16,6 +17,10 @@ public interface AnimalTypeMapper {
 
     @IterableMapping(qualifiedByName = "toAnimalTypeInfo")
     List<AnimalTypeInfo> toAnimalTypeInfos(List<AnimalType> animalTypes);
+
+    @Mapping(source = "name", target = "name")
+    @Mapping(expression = "java(StringConverter.stringToBytes(animalTypeInfoSave.getImageData()))", target = "imageData")
+    AnimalType toAnimalType(AnimalTypeInfoSave animalTypeInfoSave);
 }
 
 

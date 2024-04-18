@@ -1,5 +1,6 @@
 package com.lostfound.animalback.business.user;
 
+import com.lostfound.animalback.business.Status;
 import com.lostfound.animalback.business.user.dto.PasswordUpdate;
 import com.lostfound.animalback.domain.user.User;
 import com.lostfound.animalback.domain.user.UserRepository;
@@ -32,7 +33,7 @@ public class UserService {
     public void deleteUser(Integer userId, String validationPassword) {
         User user = userRepository.getReferenceById(userId);
         ValidationService.validateCorrectPassword(validationPassword, user.getPassword());
-        user.setStatus("D");
+        user.setStatus(Status.DEACTIVATED);
         userRepository.save(user);
     }
 

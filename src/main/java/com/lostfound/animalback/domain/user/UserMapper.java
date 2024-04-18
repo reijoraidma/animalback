@@ -1,5 +1,6 @@
 package com.lostfound.animalback.domain.user;
 
+import com.lostfound.animalback.business.Status;
 import com.lostfound.animalback.business.login.dto.LoginResponse;
 
 import com.lostfound.animalback.business.register.dto.UserRequest;
@@ -14,7 +15,7 @@ public interface UserMapper {
 
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
-    @Mapping(constant = "A", target = "status")
+    @Mapping(constant = Status.DEACTIVATED, target = "status")
     User toUser(UserRequest userRequest);
 
 }
