@@ -14,5 +14,4 @@ public interface ProfileMapper {
     @Mapping(source = "user.email", target = "userEmail")
     @Mapping(expression = "java(StringConverter.bytesToString(profile.getImageData()))", target = "imageData")
     ProfileInfo toProfileInfo(Profile profile);
-
 }
