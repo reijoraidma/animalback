@@ -1,6 +1,7 @@
 package com.lostfound.animalback.domain.animal.breed;
 
 import com.lostfound.animalback.business.animal.breed.dto.BreedResponse;
+import com.lostfound.animalback.business.animal.breed.dto.BreedSave;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface BreedMapper {
     List<BreedResponse> toBreedResponseList(List<Breed> breeds);
 
 
+    @Mapping(source = "type", target = "type")
+    @Mapping(source = "animalTypeId", target = "animalType.id")
+    Breed toBreed(BreedSave breedSave);
 }

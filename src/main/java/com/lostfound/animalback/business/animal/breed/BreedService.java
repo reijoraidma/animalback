@@ -1,6 +1,7 @@
 package com.lostfound.animalback.business.animal.breed;
 
 import com.lostfound.animalback.business.animal.breed.dto.BreedResponse;
+import com.lostfound.animalback.business.animal.breed.dto.BreedSave;
 import com.lostfound.animalback.domain.animal.breed.Breed;
 import com.lostfound.animalback.domain.animal.breed.BreedMapper;
 import com.lostfound.animalback.domain.animal.breed.BreedRepository;
@@ -21,4 +22,9 @@ public class BreedService {
     }
 
 
+    public void addBreed(BreedSave breedSave) {
+        Breed breed = breedMapper.toBreed(breedSave);
+        breed.setStatus("A");
+        breedRepository.save(breed);
+    }
 }
