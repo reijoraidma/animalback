@@ -6,9 +6,7 @@ import com.lostfound.animalback.infrastructure.exception.ForbiddenException;
 
 import java.util.Optional;
 
-import static com.lostfound.animalback.infrastructure.error.Error.INCORRECT_CREDENTIALS;
-import static com.lostfound.animalback.infrastructure.error.Error.INCORRECT_PASSWORD;
-import static com.lostfound.animalback.infrastructure.error.Error.ANIMAL_TYPE_UNAVAILABLE;
+import static com.lostfound.animalback.infrastructure.error.Error.*;
 
 public class ValidationService {
 

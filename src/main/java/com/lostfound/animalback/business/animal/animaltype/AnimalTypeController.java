@@ -2,7 +2,6 @@ package com.lostfound.animalback.business.animal.animaltype;
 
 import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfo;
 import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfoSave;
-import com.lostfound.animalback.business.register.dto.UserRequest;
 import com.lostfound.animalback.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
