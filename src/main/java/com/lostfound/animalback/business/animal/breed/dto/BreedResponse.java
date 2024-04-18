@@ -1,6 +1,5 @@
 package com.lostfound.animalback.business.animal.breed.dto;
 
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
