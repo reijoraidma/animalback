@@ -32,7 +32,7 @@ public class BreedController {
     }
 
     @Operation(summary = "Kustutab tõu")
-    @DeleteMapping("/ainmal/breed")
+    @DeleteMapping("/animal/breed")
     public void deleteBreed(@RequestParam Integer breedId) {
         breedService.deleteBreed(breedId);
     }

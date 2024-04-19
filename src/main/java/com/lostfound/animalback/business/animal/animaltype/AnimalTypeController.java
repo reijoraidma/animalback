@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AnimalTypeController
 {
-    private AnimalTypeService animalTypeService;
+    private final AnimalTypeService animalTypeService;
 
 
     @GetMapping("/animal/animaltypes")
