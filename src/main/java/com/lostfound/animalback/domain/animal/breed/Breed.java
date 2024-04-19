@@ -17,14 +17,20 @@ public class Breed {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+
     @Size(max = 255)
-    @Column(name = "type")
+    @NotNull
+    @Column(name = "type", nullable = false)
     private String type;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "animal_type_id", nullable = false)
     private AnimalType animalType;
+
+    @NotNull
+    @Column(name = "image_data", nullable = false)
+    private byte[] imageData;
 
     @NotNull
     @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)

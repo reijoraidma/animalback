@@ -1,7 +1,7 @@
 package com.lostfound.animalback.business.animal;
 
 import com.lostfound.animalback.business.animal.dto.AnimalInfo;
-import com.lostfound.animalback.domain.Animal;
+import com.lostfound.animalback.domain.animal.Animal;
 import com.lostfound.animalback.domain.animal.AnimalMapper;
 import com.lostfound.animalback.domain.animal.AnimalRepository;
 import lombok.AllArgsConstructor;

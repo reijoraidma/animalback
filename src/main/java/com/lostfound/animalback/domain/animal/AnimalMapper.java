@@ -1,7 +1,6 @@
 package com.lostfound.animalback.domain.animal;
 
 import com.lostfound.animalback.business.animal.dto.AnimalInfo;
-import com.lostfound.animalback.domain.Animal;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)

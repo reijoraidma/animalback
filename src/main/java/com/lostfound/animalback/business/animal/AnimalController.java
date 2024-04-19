@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 public class AnimalController {
-
     private AnimalService animalService;
-
 
     @Operation(summary = "Tagastab Looma info")
     @GetMapping("/animal/{animalId}")

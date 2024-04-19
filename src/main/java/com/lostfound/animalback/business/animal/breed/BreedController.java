@@ -1,8 +1,9 @@
 package com.lostfound.animalback.business.animal.breed;
 
-import com.lostfound.animalback.business.animal.breed.dto.BreedResponse;
-import com.lostfound.animalback.business.animal.breed.dto.BreedSave;
+import com.lostfound.animalback.business.animal.breed.dto.BreedInfo;
+import com.lostfound.animalback.business.animal.breed.dto.BreedRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +16,14 @@ public class BreedController {
 
     @Operation(summary = "Tagastab listi  tõugudest")
     @GetMapping("/animal/breeds")
-    public List<BreedResponse> getBreeds(@RequestParam Integer animalTypeId) {
-        return breedService.getBreeds(animalTypeId);
+    public List<BreedInfo> getAnimalBreeds(@RequestParam Integer animalTypeId) {
+        return breedService.getAnimalBreeds(animalTypeId);
     }
 
     @Operation(summary = "Lisab uued tõu")
     @PostMapping("/animal/breed")
-    public void addBreed(@RequestBody BreedSave breedSave) {
-        breedService.addBreed(breedSave);
+    public void addAnimalBreed(@RequestBody @Valid BreedRequest breedRequest) {
+        breedService.addAnimalBreed(breedRequest);
     }
 
     @Operation(summary = "Muudab tõu staatuse")

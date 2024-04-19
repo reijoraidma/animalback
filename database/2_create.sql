@@ -36,8 +36,9 @@ CREATE TABLE animal_type (
 -- Table: breed
 CREATE TABLE breed (
                        id serial  NOT NULL,
-                       type varchar(255)  NULL,
+                       type varchar(255) NOT NULL,
                        animal_type_id int  NOT NULL,
+                       image_data bytea  NOT NULL,
                        status char(1)  NOT NULL,
                        CONSTRAINT breed_pk PRIMARY KEY (id)
 );
