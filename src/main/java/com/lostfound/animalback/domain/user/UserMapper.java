@@ -5,8 +5,6 @@ import com.lostfound.animalback.business.login.dto.LoginResponse;
 import com.lostfound.animalback.business.register.dto.UserRequest;
 import org.mapstruct.*;
 
-import static com.lostfound.animalback.business.Status.ACTIVE;
-
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
 
@@ -16,7 +14,7 @@ public interface UserMapper {
 
     @Mapping(source = "email", target = "email")
     @Mapping(source = "password", target = "password")
-    @Mapping(constant = ACTIVE, target = "status")
+    @Mapping(constant = Status.DEACTIVATED, target = "status")
     User toUser(UserRequest userRequest);
 
 }
