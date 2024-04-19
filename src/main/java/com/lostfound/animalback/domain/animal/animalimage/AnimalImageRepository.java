@@ -1,7 +1,5 @@
 package com.lostfound.animalback.domain.animal.animalimage;
 
-import com.lostfound.animalback.business.animal.animalimage.dto.AnimalImageInfo;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

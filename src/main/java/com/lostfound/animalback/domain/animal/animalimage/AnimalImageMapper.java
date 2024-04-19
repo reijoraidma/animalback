@@ -2,8 +2,6 @@ package com.lostfound.animalback.domain.animal.animalimage;
 
 import com.lostfound.animalback.business.animal.animalimage.dto.AnimalImageInfo;
 import com.lostfound.animalback.business.animal.animalimage.dto.AnimalImageSave;
-import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfo;
-import com.lostfound.animalback.domain.animal.animaltype.AnimalType;
 import org.mapstruct.*;
 
 import java.util.List;
