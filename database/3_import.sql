@@ -21,4 +21,6 @@ INSERT INTO animal.breed (id, type, animal_type_id, status) VALUES (default, 'Ku
 INSERT INTO animal.gender (id, type) VALUES (default, 'male');
 INSERT INTO animal.gender (id, type) VALUES (default, 'female');
 
+INSERT INTO animal.animal (id, animal_type_id, gender_id, breed_id, size, age, color) VALUES (default, 2, 1, 2, 'keskmine', 'noor', 'lilla');
+
 

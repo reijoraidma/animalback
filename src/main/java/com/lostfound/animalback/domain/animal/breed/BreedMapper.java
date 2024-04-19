@@ -19,7 +19,7 @@ public interface BreedMapper {
 
     @Mapping(source = "type", target = "type")
     @Mapping(source = "animalTypeId", target = "animalType.id")
-    @Mapping(constant = Status.DEACTIVATED, target = "status")
+    @Mapping(constant = Status.ACTIVE, target = "status")
     Breed toBreed(BreedSave breedSave);
 
 }
