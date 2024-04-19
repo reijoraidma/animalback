@@ -3,15 +3,16 @@ package com.lostfound.animalback.domain.animal.animalimage;
 import com.lostfound.animalback.business.animal.animalimage.dto.AnimalImageInfo;
 import com.lostfound.animalback.business.animal.animalimage.dto.AnimalImageSave;
 import org.mapstruct.*;
+import util.StringConverter;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING,imports = {StringConverter.class})
 public interface AnimalImageMapper {
 
     @Named("toAnimalImage")
     @Mapping(source = "animalId",target = "animal.id")
-    @Mapping(source = "imageData",target = "imageData")
+    @Mapping(expression = "java(StringConverter.stringToBytes(animalImageSave.getImageData()))", target = "imageData")
     AnimalImage toAnimalImage(AnimalImageSave animalImageSave);
     @IterableMapping(qualifiedByName = "toAnimalImage")
     List<AnimalImage> toAnimalImages(List<AnimalImageSave> animalImageSaves);
