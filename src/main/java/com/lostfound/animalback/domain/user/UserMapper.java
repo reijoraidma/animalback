@@ -1,5 +1,6 @@
 package com.lostfound.animalback.domain.user;
 
+import com.lostfound.animalback.business.Status;
 import com.lostfound.animalback.business.login.dto.LoginResponse;
 
 import com.lostfound.animalback.business.register.dto.UserRequest;
