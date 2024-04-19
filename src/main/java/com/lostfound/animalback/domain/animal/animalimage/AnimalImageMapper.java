@@ -1,0 +1,28 @@
+package com.lostfound.animalback.domain.animal.animalimage;
+
+import com.lostfound.animalback.business.animal.animalimage.dto.AnimalImageInfo;
+import com.lostfound.animalback.business.animal.animalimage.dto.AnimalImageSave;
+import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfo;
+import com.lostfound.animalback.domain.animal.animaltype.AnimalType;
+import org.mapstruct.*;
+
+import java.util.List;
+
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+public interface AnimalImageMapper {
+
+    @Named("toAnimalImage")
+    @Mapping(source = "animalId",target = "animal.id")
+    @Mapping(source = "imageData",target = "imageData")
+    AnimalImage toAnimalImage(AnimalImageSave animalImageSave);
+    @IterableMapping(qualifiedByName = "toAnimalImage")
+    List<AnimalImage> toAnimalImages(List<AnimalImageSave> animalImageSaves);
+
+    @Named("toAnimalImageInfo")
+    @Mapping(source = "id",target = "id")
+    @Mapping(source = "animal.id",target = "animalId")
+    @Mapping(expression = "java(StringConverter.bytesToString(animalImage.getImageData()))", target = "imageData")
+    AnimalImageInfo toAnimalImageInfo(AnimalImage animalImage);
+    @IterableMapping(qualifiedByName = "toAnimalImageInfo")
+    List<AnimalImageInfo> toAnimalImageInfos(List<AnimalImage> animalImages);
+}
