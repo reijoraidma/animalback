@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class ProfileController {
 
-    private ProfileService profileService;
+    private final ProfileService profileService;
 
     @GetMapping("/profile/{profileId}")
     public ProfileInfo getProfile(@PathVariable Integer profileId) {

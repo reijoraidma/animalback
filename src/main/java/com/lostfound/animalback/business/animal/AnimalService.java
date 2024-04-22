@@ -7,6 +7,8 @@ import com.lostfound.animalback.domain.animal.AnimalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AnimalService {
@@ -17,4 +19,5 @@ public class AnimalService {
         Animal animal = animalRepository.getReferenceById(animalId);
         return animalMapper.toAnimalInfo(animal);
     }
+
 }

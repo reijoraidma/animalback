@@ -1,4 +1,4 @@
-package com.lostfound.animalback.domain;
+package com.lostfound.animalback.domain.post;
 
 import com.lostfound.animalback.domain.animal.Animal;
 import com.lostfound.animalback.domain.user.User;

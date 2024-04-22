@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING,imports = {StringConverter.class})
 public interface AnimalTypeMapper {
     @Named("toAnimalTypeInfo")
-    @Mapping(source = "id", target = "animalId")
-    @Mapping(source = "name", target = "animalName")
-    @Mapping(expression = "java(StringConverter.bytesToString(animalType.getImageData()))", target = "animalImageData")
+    @Mapping(source = "id", target = "animalTypeId")
+    @Mapping(source = "name", target = "animalTypeName")
+    @Mapping(expression = "java(StringConverter.bytesToString(animalType.getImageData()))", target = "animalTypeImageData")
     AnimalTypeInfo toAnimalTypeInfo(AnimalType animalType);
 
     @IterableMapping(qualifiedByName = "toAnimalTypeInfo")
