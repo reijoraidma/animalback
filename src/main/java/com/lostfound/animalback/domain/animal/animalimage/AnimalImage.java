@@ -1,6 +1,6 @@
 package com.lostfound.animalback.domain.animal.animalimage;
 
-import com.lostfound.animalback.domain.Animal;
+import com.lostfound.animalback.domain.animal.Animal;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

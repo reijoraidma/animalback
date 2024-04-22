@@ -1,4 +1,4 @@
-package com.lostfound.animalback.domain;
+package com.lostfound.animalback.domain.location;
 
 import com.lostfound.animalback.domain.post.Post;
 import jakarta.persistence.*;

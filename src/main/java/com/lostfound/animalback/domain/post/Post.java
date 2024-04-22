@@ -1,6 +1,6 @@
 package com.lostfound.animalback.domain.post;
 
-import com.lostfound.animalback.domain.Animal;
+import com.lostfound.animalback.domain.animal.Animal;
 import com.lostfound.animalback.domain.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

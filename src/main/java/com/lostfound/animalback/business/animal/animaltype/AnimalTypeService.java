@@ -37,7 +37,7 @@ public class AnimalTypeService {
     }
 
     private AnimalType deactivateAndSaveNewAnimalType(AnimalType animalType) {
-        animalType.setStatus(Status.DEACTIVATED);
+        animalType.setStatus(Status.ACTIVE);
         animalType = animalTypeRepository.save(animalType);
         return animalType;
     }

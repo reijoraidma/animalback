@@ -1,6 +1,5 @@
 package com.lostfound.animalback.business.animal.breed.dto;
 
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BreedSave implements Serializable {
-    @Size(max = 255)
-    private String type;
-    private Integer animalTypeId;
+public class BreedInfo implements Serializable {
+    private Integer breedId;
+    private String breedName;
 }
