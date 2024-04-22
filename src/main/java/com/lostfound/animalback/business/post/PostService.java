@@ -18,26 +18,33 @@ public class PostService {
     private final AnimalImageRepository animalImageRepository;
     private final PostMapper postMapper;
 
-    public List<PostFilter> getPostInfoByAnimalType(Integer animalTypeId, String postType ) {
+    public List<PostFilter> getFilteredInfosBy(String postType) {
 
-        List<Post> oneTypeAnimalPosts = postRepository.findPostsByType(animalTypeId, postType);
-        List<PostFilter> postFilters = postMapper.toPostFilters(oneTypeAnimalPosts);
-        addAnimalImage(oneTypeAnimalPosts, postFilters);
-        return postFilters;
+        List<Post> AnimalPosts = postRepository.findPostsBy(postType);
+        List<PostFilter> filteredInfos = postMapper.toPostFilters(AnimalPosts);
+        addFirstAnimalImage(AnimalPosts, filteredInfos);
+        return filteredInfos;
     }
-    public List<PostFilter> getPostInfoByAnimalBreed(Integer animalBreedId,String postType) {
+    public List<PostFilter> getSameAnimalTypeFilteredInfosBy(Integer animalTypeId, String postType ) {
 
-        List<Post> oneTypeAnimalPosts = postRepository.findPostsByBreed(animalBreedId, postType);
-        List<PostFilter> postFilters = postMapper.toPostFilters(oneTypeAnimalPosts);
-        addAnimalImage(oneTypeAnimalPosts, postFilters);
-        return postFilters;
+        List<Post> sameAnimalTypePosts = postRepository.findSameAnimalTypePostsBy(animalTypeId, postType);
+        List<PostFilter> filteredInfos = postMapper.toPostFilters(sameAnimalTypePosts);
+        addFirstAnimalImage(sameAnimalTypePosts, filteredInfos);
+        return filteredInfos;
+    }
+    public List<PostFilter> getSameAnimalBreedFilteredInfosBy(Integer animalBreedId,String postType) {
+
+        List<Post> sameAnimalBreedPosts = postRepository.findSameAnimalBreedPostsBy(animalBreedId, postType);
+        List<PostFilter> filteredInfos = postMapper.toPostFilters(sameAnimalBreedPosts);
+        addFirstAnimalImage(sameAnimalBreedPosts, filteredInfos);
+        return filteredInfos;
     }
 
-    private void addAnimalImage(List<Post> oneTypeAnimalPosts, List<PostFilter> postFilters) {
-        for (Post post : oneTypeAnimalPosts){
+    private void addFirstAnimalImage(List<Post> animalPosts, List<PostFilter> filteredInfos) {
+        for (Post post : animalPosts){
             Integer animalId = post.getAnimal().getId();
             String animalImage = StringConverter.bytesToString(animalImageRepository.getAnimalImagesByAnimal_Id(animalId).getFirst().getImageData());
-            for(PostFilter postFilter: postFilters){
+            for(PostFilter postFilter: filteredInfos){
                 if(postFilter.getPostId().equals(post.getId())){
                     postFilter.setAnimalImageData(animalImage);
                 }
