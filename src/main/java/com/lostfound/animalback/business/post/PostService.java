@@ -18,11 +18,21 @@ public class PostService {
     private final AnimalImageRepository animalImageRepository;
     private final PostMapper postMapper;
 
-    public List<PostFilter> getInitialInfoBy(Integer animalTypeId) {
+    public List<PostFilter> getFoundPostInfoByAnimalType(Integer animalTypeId) {
 
-        List<Post> oneTypeAnimalPosts = postRepository.findAllByAnimalTypeId(animalTypeId);
+        List<Post> oneTypeAnimalPosts = postRepository.findPostsByType(animalTypeId,PostType.FOUND);
         List<PostFilter> postFilters = postMapper.toPostFilters(oneTypeAnimalPosts);
+        addAnimalImage(oneTypeAnimalPosts, postFilters);
+        return postFilters;
+    }
+    public List<PostFilter> getFoundPostInfoByAnimalBreed(Integer animalBreedId) {
 
+        List<Post> oneTypeAnimalPosts = postRepository.findPostsByBreed(animalBreedId,PostType.FOUND);
+        List<PostFilter> postFilters = postMapper.toPostFilters(oneTypeAnimalPosts);
+        addAnimalImage(oneTypeAnimalPosts, postFilters);
+        return postFilters;
+    }
+    private void addAnimalImage(List<Post> oneTypeAnimalPosts, List<PostFilter> postFilters) {
         for (Post post : oneTypeAnimalPosts){
             Integer animalId = post.getAnimal().getId();
             String animalImage = StringConverter.bytesToString(animalImageRepository.getAnimalImagesByAnimal_Id(animalId).getFirst().getImageData());
@@ -32,6 +42,5 @@ public class PostService {
                 }
             }
         }
-        return postFilters;
     }
 }

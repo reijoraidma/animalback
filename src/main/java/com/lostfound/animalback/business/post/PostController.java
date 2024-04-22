@@ -13,7 +13,13 @@ public class PostController {
 
     private final PostService postService;
     @GetMapping("/posts/found/{animalTypeId}")
-    List<PostFilter> getInitialInfoBy(@PathVariable Integer animalTypeId){
-        return postService.getInitialInfoBy(animalTypeId);
+    List<PostFilter> getFoundPostInfoByAnimalType(@PathVariable Integer animalTypeId){
+        return postService.getFoundPostInfoByAnimalType(animalTypeId);
     }
+
+    @GetMapping("/posts/found/{animalBreedId}")
+    List<PostFilter> getFoundPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
+        return postService.getFoundPostInfoByAnimalBreed(animalBreedId);
+    }
+
 }
