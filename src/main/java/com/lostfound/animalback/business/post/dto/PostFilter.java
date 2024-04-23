@@ -1,4 +1,4 @@
-package com.lostfound.animalback.business.post;
+package com.lostfound.animalback.business.post.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

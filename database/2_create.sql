@@ -69,7 +69,7 @@ CREATE TABLE post (
                       animal_id int  NOT NULL,
                       type char(1)  NOT NULL,
                       status char(1)  NOT NULL,
-                      timestamp int  NOT NULL,
+                      timestamp TIMESTAMP  NOT NULL,
                       city varchar(255)  NULL,
                       county varchar(255)  NULL,
                       address varchar(255)  NULL,

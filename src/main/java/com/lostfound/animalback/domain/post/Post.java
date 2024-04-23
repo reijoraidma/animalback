@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -38,7 +40,7 @@ public class Post {
 
     @NotNull
     @Column(name = "\"timestamp\"", nullable = false)
-    private Integer timestamp;
+    private LocalDateTime timestamp;
 
     @Size(max = 255)
     @Column(name = "city")

@@ -1,4 +1,4 @@
-package com.lostfound.animalback.business.post;
+package com.lostfound.animalback.business.post.dto;
 
 import com.lostfound.animalback.domain.post.Post;
 import jakarta.validation.constraints.NotNull;
@@ -15,29 +15,20 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostInfo implements Serializable {
+public class PostRequest implements Serializable {
     @NotNull
-    private Integer id;
+    private String postType;
+    @NotNull
     private Integer userId;
+    @NotNull
     private Integer animalId;
-    private Integer animalAnimalTypeId;
-    private String animalAnimalTypeName;
-    private String animalAnimalTypeImageData;
-    private String animalAnimalTypeStatus;
-    private Integer animalGenderId;
-    private String animalGenderType;
+    @NotNull
+    private Integer animalTypeId;
     private Integer animalBreedId;
-    private String animalBreedType;
-    private String animalBreedStatus;
+    private Integer animalGenderId;
     private String animalSize;
     private String animalAge;
     private String animalColor;
-    @NotNull
-    private String type;
-    @NotNull
-    private String status;
-    @NotNull
-    private Integer timestamp;
     @Size(max = 255)
     private String city;
     @Size(max = 255)
@@ -46,4 +37,6 @@ public class PostInfo implements Serializable {
     private String address;
     @Size(max = 255)
     private String info;
+    @NotNull
+    private String postAnimalImageData;
 }

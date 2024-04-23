@@ -1,6 +1,6 @@
 package com.lostfound.animalback.domain.animal;
 
-import com.lostfound.animalback.domain.Gender;
+import com.lostfound.animalback.domain.animal.animalgender.Gender;
 import com.lostfound.animalback.domain.animal.animaltype.AnimalType;
 import com.lostfound.animalback.domain.animal.breed.Breed;
 import jakarta.persistence.*;
