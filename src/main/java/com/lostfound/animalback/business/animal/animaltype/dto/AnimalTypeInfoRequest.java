@@ -15,8 +15,12 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnimalTypeInfo implements Serializable {
-    private Integer animalTypeId;
+public class AnimalTypeInfoRequest implements Serializable {
+    @NotNull
+    private Integer userId;
+    @NotNull
+    @Size(max = 255)
     private String animalTypeName;
-    private String animalTypeStatus;
+    @NotNull
+    private String animalTypeImageData;
 }

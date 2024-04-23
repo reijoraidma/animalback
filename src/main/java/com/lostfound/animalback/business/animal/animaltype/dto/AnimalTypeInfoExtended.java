@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -12,13 +13,10 @@ import java.io.Serializable;
 /**
  * DTO for {@link AnimalType}
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnimalTypeInfoSave implements Serializable {
-    @NotNull
-    @Size(max = 255)
-    private String name;
-    @NotNull
-    private String imageData;
+public class AnimalTypeInfoExtended extends AnimalTypeInfo implements Serializable {
+    private String animalTypeImageData;
 }
