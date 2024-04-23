@@ -1,7 +1,9 @@
 package com.lostfound.animalback.domain.animal.animaltype;
 
+import com.lostfound.animalback.business.Status;
 import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfo;
-import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfoSave;
+import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfoExtended;
+import com.lostfound.animalback.business.animal.animaltype.dto.AnimalTypeInfoRequest;
 import org.mapstruct.*;
 import util.StringConverter;
 
@@ -12,15 +14,26 @@ public interface AnimalTypeMapper {
     @Named("toAnimalTypeInfo")
     @Mapping(source = "id", target = "animalTypeId")
     @Mapping(source = "name", target = "animalTypeName")
-    @Mapping(expression = "java(StringConverter.bytesToString(animalType.getImageData()))", target = "animalTypeImageData")
-    AnimalTypeInfo toAnimalTypeInfo(AnimalType animalType);
+    @Mapping(source = "status", target = "animalTypeStatus")
+    AnimalTypeInfo toAnimalTypeInfos(AnimalType animalType);
 
     @IterableMapping(qualifiedByName = "toAnimalTypeInfo")
-    List<AnimalTypeInfo> toAnimalTypeInfos(List<AnimalType> animalTypes);
+    List<AnimalTypeInfo> toAnimalTypeInfos(List<AnimalType> animalType);
 
-    @Mapping(source = "name", target = "name")
-    @Mapping(expression = "java(StringConverter.stringToBytes(animalTypeInfoSave.getImageData()))", target = "imageData")
-    AnimalType toAnimalType(AnimalTypeInfoSave animalTypeInfoSave);
+    @Named("toAnimalTypeInfoExtended")
+    @Mapping(source = "id", target = "animalTypeId")
+    @Mapping(source = "name", target = "animalTypeName")
+    @Mapping(expression = "java(StringConverter.bytesToString(animalType.getImageData()))", target = "animalTypeImageData")
+    @Mapping(source = "status", target = "animalTypeStatus")
+    AnimalTypeInfoExtended toAnimalTypeInfoExtended(AnimalType animalType);
+
+    @IterableMapping(qualifiedByName = "toAnimalTypeInfoExtended")
+    List<AnimalTypeInfoExtended> toAnimalTypeInfosExtended(List<AnimalType> animalTypes);
+
+    @Mapping(source = "animalTypeName", target = "name")
+    @Mapping(constant = Status.PENDING, target = "status")
+    @Mapping(expression = "java(StringConverter.stringToBytes(animalTypeInfoRequest.getAnimalTypeImageData()))", target = "imageData")
+    AnimalType toAnimalType(AnimalTypeInfoRequest animalTypeInfoRequest);
 }
 
 

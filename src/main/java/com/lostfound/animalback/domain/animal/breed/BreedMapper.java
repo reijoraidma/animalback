@@ -12,6 +12,7 @@ public interface BreedMapper {
 
     @Named("toBreedResponse")
     @Mapping(source = "type", target = "breedName")
+    @Mapping(source = "id", target = "breedId")
     BreedInfo toBreedInfo(Breed breed);
 
     @IterableMapping(qualifiedByName = "toBreedResponse")

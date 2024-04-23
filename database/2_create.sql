@@ -27,9 +27,10 @@ CREATE INDEX animal_image_idx_1 on animal_image (animal_id ASC);
 -- Table: animal_type
 CREATE TABLE animal_type (
                              id serial  NOT NULL,
+                             user_id int  NOT NULL,
                              name varchar(255)  NOT NULL,
-                             image_data bytea  NOT NULL,
                              status char(1)  NOT NULL,
+                             image_data bytea  NOT NULL,
                              CONSTRAINT animal_type_pk PRIMARY KEY (id)
 );
 
@@ -163,6 +164,13 @@ ALTER TABLE post ADD CONSTRAINT post_animal
 
 -- Reference: post_user (table: post)
 ALTER TABLE post ADD CONSTRAINT post_user
+    FOREIGN KEY (user_id)
+        REFERENCES "user" (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+-- Reference: post_user (table: post)
+ALTER TABLE animal_type ADD CONSTRAINT animal_type_user
     FOREIGN KEY (user_id)
         REFERENCES "user" (id)
         NOT DEFERRABLE
