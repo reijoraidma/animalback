@@ -1,6 +1,8 @@
 package com.lostfound.animalback.domain.post;
 
-import com.lostfound.animalback.business.post.PostFilter;
+import com.lostfound.animalback.business.post.dto.PostFilter;
+import com.lostfound.animalback.business.post.dto.PostInfo;
+import com.lostfound.animalback.domain.animal.animalimage.AnimalImage;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -16,4 +18,16 @@ public interface PostMapper {
 
     @IterableMapping(qualifiedByName = "toPostFilter")
     List<PostFilter> toPostFilters(List<Post> Posts);
+
+
+
+    @Mapping(source = "animal.animalType.name", target = "animalTypeName")
+    @Mapping(source = "animal.breed.type", target = "animalBreedType")
+    @Mapping(source = "animal.size", target = "animalSize")
+    @Mapping(source = "animal.color", target = "animalColor")
+    @Mapping(source = "animal.age", target = "animalAge")
+    @Mapping(source = "county", target = "county")
+    @Mapping(source = "animal.gender.type", target = "animalGenderType")
+    @Mapping(source = "animal.id", target = "animalId")
+    PostInfo toPostInfo(Post post);
 }

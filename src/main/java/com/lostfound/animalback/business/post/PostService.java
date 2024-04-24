@@ -1,5 +1,8 @@
 package com.lostfound.animalback.business.post;
 
+import com.lostfound.animalback.business.post.dto.PostFilter;
+import com.lostfound.animalback.business.post.dto.PostInfo;
+import com.lostfound.animalback.domain.animal.animalimage.AnimalImage;
 import com.lostfound.animalback.domain.animal.animalimage.AnimalImageRepository;
 import com.lostfound.animalback.domain.post.Post;
 import com.lostfound.animalback.domain.post.PostMapper;
@@ -50,5 +53,11 @@ public class PostService {
                 }
             }
         }
+    }
+
+
+    public PostInfo getPost(Integer postId) {
+        Post post = postRepository.getReferenceById(postId);
+        return postMapper.toPostInfo(post);
     }
 }

@@ -15,10 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnimalImageInfo implements Serializable {
-    @NotNull
-    private Integer id;
-    @NotNull
-    private Integer animalId;
-    @NotNull
+
+    private Integer animalImageId;
     private String imageData;
 }

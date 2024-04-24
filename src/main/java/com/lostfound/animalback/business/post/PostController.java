@@ -1,5 +1,7 @@
 package com.lostfound.animalback.business.post;
 
+import com.lostfound.animalback.business.post.dto.PostFilter;
+import com.lostfound.animalback.business.post.dto.PostInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
@@ -54,6 +56,12 @@ public class PostController {
     @ApiResponse(responseCode = "200", description = "OK")
     List<PostFilter> getLostPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
         return postService.getSameAnimalBreedFilteredInfosBy(animalBreedId, PostType.LOST);
+    }
+
+
+    @GetMapping("/posts/{postId}")
+    public PostInfo getPost(@PathVariable Integer postId){
+        return postService.getPost(postId);
     }
 
 }

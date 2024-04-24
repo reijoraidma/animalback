@@ -16,11 +16,7 @@ public class AnimalImageService {
 
     private final AnimalImageMapper animalImageMapper;
     private final AnimalImageRepository animalImageRepository;
-    public List<AnimalImageInfo> saveAnimalImages(List<AnimalImageSave> animalImageSaves) {
-        List<AnimalImage> animalImages = animalImageMapper.toAnimalImages(animalImageSaves);
-        animalImages = animalImageRepository.saveAll(animalImages);
-        return animalImageMapper.toAnimalImageInfos(animalImages);
-    }
+
 
     public List<AnimalImageInfo> getAnimalImageInfos(Integer animalId){
         List<AnimalImage> animalImages = animalImageRepository.getAnimalImagesByAnimal_Id(animalId);
