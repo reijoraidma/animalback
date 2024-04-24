@@ -2,6 +2,7 @@ package com.lostfound.animalback.business.post;
 
 import com.lostfound.animalback.business.Status;
 import com.lostfound.animalback.business.post.dto.PostFilter;
+import com.lostfound.animalback.business.post.dto.PostFilteringData;
 import com.lostfound.animalback.business.post.dto.PostInfo;
 import com.lostfound.animalback.business.post.dto.PostRequest;
 import com.lostfound.animalback.domain.animal.Animal;
@@ -58,6 +59,16 @@ public class PostService {
         addFirstAnimalImage(sameAnimalBreedPosts, filteredInfos);
         return filteredInfos;
     }
+    public List<PostFilter> getPostInfoByFilter(PostFilteringData postFilteringData, String postType) {
+        List<Post> postsFilter = postRepository.findPostsWithOptionalParams(
+                postFilteringData.getPostAnimalSize(),
+                postFilteringData.getPostAnimalColor(),
+                postFilteringData.getPostAnimalAge(),
+                postType);
+        List<PostFilter> filteredInfos = postMapper.toPostFilters(postsFilter);
+        addFirstAnimalImage(postsFilter, filteredInfos);
+        return filteredInfos;
+    }
 
     private void addFirstAnimalImage(List<Post> animalPosts, List<PostFilter> filteredInfos) {
         for (Post post : animalPosts){
@@ -112,4 +123,5 @@ public class PostService {
         postRepository.save(post);
 
     }
+
 }

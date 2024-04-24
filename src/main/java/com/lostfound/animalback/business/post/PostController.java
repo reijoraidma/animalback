@@ -1,6 +1,7 @@
 package com.lostfound.animalback.business.post;
 
 import com.lostfound.animalback.business.post.dto.PostFilter;
+import com.lostfound.animalback.business.post.dto.PostFilteringData;
 import com.lostfound.animalback.business.post.dto.PostInfo;
 import com.lostfound.animalback.business.post.dto.PostRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,6 +37,13 @@ public class PostController {
         return postService.getSameAnimalBreedFilteredInfosBy(animalBreedId, PostType.FOUND);
     }
 
+    @GetMapping("/posts/found/postFilter")
+    @Operation(summary = "Get found animal info by filters ", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(size, color, age) for found animals")
+    @ApiResponse(responseCode = "200", description = "OK")
+    public List<PostFilter> getFoundPostInfoBy(@RequestBody PostFilteringData postFilteringData){
+        return postService.getPostInfoByFilter(postFilteringData, PostType.FOUND);
+    }
+
     @GetMapping("/posts/lost")
     @Operation(summary = "Get all lost animals info", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) for all lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
@@ -55,6 +63,13 @@ public class PostController {
     @ApiResponse(responseCode = "200", description = "OK")
     List<PostFilter> getLostPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
         return postService.getSameAnimalBreedFilteredInfosBy(animalBreedId, PostType.LOST);
+    }
+
+    @GetMapping("/posts/lost/postFilter")
+    @Operation(summary = "Get lost animal info by filters", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(size, color, age) for lost animals")
+    @ApiResponse(responseCode = "200", description = "OK")
+    public List<PostFilter> getLostPostInfoBy(@RequestBody PostFilteringData postFilteringData){
+        return postService.getPostInfoByFilter(postFilteringData, PostType.LOST);
     }
 
     @PostMapping("/posts")
