@@ -1,5 +1,6 @@
 package com.lostfound.animalback.business.post;
 
+import com.lostfound.animalback.business.post.dto.PostAnimalUniqueFeatures;
 import com.lostfound.animalback.business.post.dto.PostFilter;
 import com.lostfound.animalback.business.post.dto.PostInfo;
 import com.lostfound.animalback.business.post.dto.PostRequest;
@@ -47,6 +48,17 @@ public class PostController {
     {
         return postService.getPostInfoByFilter(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge, PostType.FOUND);
     }
+    @GetMapping("/posts/found/features")
+    @Operation(summary = "Get found animals features by filters ", description = "Returns list of features by filters(animalTypeId,animalBreedId,size, color, age) for found animals, features must meet all criteria")
+    @ApiResponse(responseCode = "200", description = "OK")
+    public PostAnimalUniqueFeatures getFoundAnimalsUniqueFeatures(@RequestParam(required = false) Integer animalTypeId,
+                                                                  @RequestParam(required = false) Integer animalBreedId,
+                                                                  @RequestParam(required = false) String animalSize,
+                                                                  @RequestParam(required = false) String postAnimalColor,
+                                                                  @RequestParam(required = false) String postAnimalAge)
+    {
+        return postService.getAnimalsUniqueFeatures(animalTypeId,animalBreedId,animalSize,postAnimalColor,postAnimalAge, PostType.FOUND);
+    }
 
     @GetMapping("/posts/lost")
     @Operation(summary = "Get all lost animals info", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) for all lost animals")
@@ -79,6 +91,18 @@ public class PostController {
                                                @RequestParam(required = false) String postAnimalAge)
     {
         return postService.getPostInfoByFilter(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge, PostType.LOST);
+    }
+
+    @GetMapping("/posts/lost/features")
+    @Operation(summary = "Get lost animals features by filters ", description = "Returns list of features by filters(animalTypeId,animalBreedId,size, color, age) for lost animals, features must meet all criteria")
+    @ApiResponse(responseCode = "200", description = "OK")
+    public PostAnimalUniqueFeatures getLostAnimalsUniqueFeatures(@RequestParam(required = false) Integer animalTypeId,
+                                                                  @RequestParam(required = false) Integer animalBreedId,
+                                                                  @RequestParam(required = false) String animalSize,
+                                                                  @RequestParam(required = false) String postAnimalColor,
+                                                                  @RequestParam(required = false) String postAnimalAge)
+    {
+        return postService.getAnimalsUniqueFeatures(animalTypeId,animalBreedId,animalSize,postAnimalColor,postAnimalAge, PostType.LOST);
     }
 
     @PostMapping("/posts")

@@ -22,8 +22,8 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             "(:animalTypeId IS NULL OR :animalTypeId = 0 OR p.animal.animalType.id = :animalTypeId) " +
             "AND (:animalBreedId IS NULL OR :animalBreedId = 0 OR p.animal.breed.id = :animalBreedId) " +
             "AND (:postAnimalSize IS NULL OR :postAnimalSize = '' OR p.animal.size = :postAnimalSize) " +
-            "AND (:postAnimalColor IS NULL OR :postAnimalColor = '' OR p.animal.color = :postAnimalColor) " +
             "AND (:postAnimalAge IS NULL OR :postAnimalAge = '' OR p.animal.age = :postAnimalAge) " +
+            "AND (:postAnimalColor IS NULL OR :postAnimalColor = '' OR p.animal.color = :postAnimalColor) " +
             "AND p.type = :postType")
     List<Post> findPostsWithOptionalParams( Integer animalTypeId,
                                             Integer animalBreedId,
@@ -32,4 +32,44 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
                                             String postAnimalAge,
                                             String postType);
 
+    @Query("SELECT p.animal.size FROM Post p WHERE " +
+            "(:animalTypeId IS NULL OR :animalTypeId = 0 OR p.animal.animalType.id = :animalTypeId) " +
+            "AND (:animalBreedId IS NULL OR :animalBreedId = 0 OR p.animal.breed.id = :animalBreedId) " +
+            "AND (:postAnimalSize IS NULL OR :postAnimalSize = '' OR p.animal.size = :postAnimalSize) " +
+            "AND (:postAnimalAge IS NULL OR :postAnimalAge = '' OR p.animal.age = :postAnimalAge) " +
+            "AND (:postAnimalColor IS NULL OR :postAnimalColor = '' OR p.animal.color = :postAnimalColor) " +
+            "AND p.type = :postType")
+    List<String> findSizesWithOptionalParams(Integer animalTypeId,
+                                             Integer animalBreedId,
+                                             String postAnimalSize,
+                                             String postAnimalAge,
+                                             String postAnimalColor,
+                                             String postType);
+    @Query("SELECT p.animal.age FROM Post p WHERE " +
+            "(:animalTypeId IS NULL OR :animalTypeId = 0 OR p.animal.animalType.id = :animalTypeId) " +
+            "AND (:animalBreedId IS NULL OR :animalBreedId = 0 OR p.animal.breed.id = :animalBreedId) " +
+            "AND (:postAnimalSize IS NULL OR :postAnimalSize = '' OR p.animal.size = :postAnimalSize) " +
+            "AND (:postAnimalAge IS NULL OR :postAnimalAge = '' OR p.animal.age = :postAnimalAge) " +
+            "AND (:postAnimalColor IS NULL OR :postAnimalColor = '' OR p.animal.color = :postAnimalColor) " +
+            "AND p.type = :postType")
+    List<String> findAgesWithOptionalParams(Integer animalTypeId,
+                                            Integer animalBreedId,
+                                            String postAnimalSize,
+                                            String postAnimalAge,
+                                            String postAnimalColor,
+                                            String postType);
+
+    @Query("SELECT p.animal.color FROM Post p WHERE " +
+            "(:animalTypeId IS NULL OR :animalTypeId = 0 OR p.animal.animalType.id = :animalTypeId) " +
+            "AND (:animalBreedId IS NULL OR :animalBreedId = 0 OR p.animal.breed.id = :animalBreedId) " +
+            "AND (:postAnimalSize IS NULL OR :postAnimalSize = '' OR p.animal.size = :postAnimalSize) " +
+            "AND (:postAnimalAge IS NULL OR :postAnimalAge = '' OR p.animal.age = :postAnimalAge) " +
+            "AND (:postAnimalColor IS NULL OR :postAnimalColor = '' OR p.animal.color = :postAnimalColor) " +
+            "AND p.type = :postType")
+    List<String> findColorsWithOptionalParams(Integer animalTypeId,
+                                              Integer animalBreedId,
+                                              String postAnimalSize,
+                                              String postAnimalAge,
+                                              String postAnimalColor,
+                                              String postType);
 }
