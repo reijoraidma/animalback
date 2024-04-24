@@ -2,6 +2,7 @@ package com.lostfound.animalback.business.post;
 
 import com.lostfound.animalback.business.Status;
 import com.lostfound.animalback.business.post.dto.PostFilter;
+import com.lostfound.animalback.business.post.dto.PostInfo;
 import com.lostfound.animalback.business.post.dto.PostRequest;
 import com.lostfound.animalback.domain.animal.Animal;
 import com.lostfound.animalback.domain.animal.AnimalRepository;
@@ -68,6 +69,12 @@ public class PostService {
                 }
             }
         }
+    }
+
+
+    public PostInfo getPost(Integer postId) {
+        Post post = postRepository.getReferenceById(postId);
+        return postMapper.toPostInfo(post);
     }
 
     @Transactional

@@ -14,8 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnimalImageInfo implements Serializable {
-
-    private Integer id;
+    private Integer animalImageId;
     private Integer animalId;
     private String imageData;
 }
