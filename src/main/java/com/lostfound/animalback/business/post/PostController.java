@@ -49,7 +49,7 @@ public class PostController {
         return postService.getPostInfoByFilter(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge, PostType.FOUND);
     }
     @GetMapping("/posts/found/features")
-    @Operation(summary = "Get found animals features by filters ", description = "Returns list of features by filters(animalTypeId,animalBreedId,size, color, age) for found animals, features must meet all criteria")
+    @Operation(summary = "Get found animals features by filters", description = "Returns a list of features lists(animalSizes,animalAges,animalColors) features by filter criteria(animalTypeId,animalBreedId,size, color, age) for found animals, features must meet all criteria")
     @ApiResponse(responseCode = "200", description = "OK")
     public PostAnimalUniqueFeatures getFoundAnimalsUniqueFeatures(@RequestParam(required = false) Integer animalTypeId,
                                                                   @RequestParam(required = false) Integer animalBreedId,
@@ -94,7 +94,7 @@ public class PostController {
     }
 
     @GetMapping("/posts/lost/features")
-    @Operation(summary = "Get lost animals features by filters ", description = "Returns list of features by filters(animalTypeId,animalBreedId,size, color, age) for lost animals, features must meet all criteria")
+    @Operation(summary = "Get lost animals features by filters ", description = "Returns a list of features lists(animalSizes,animalAges,animalColors) by filter criteria(animalTypeId,animalBreedId,size, color, age) for lost animals, features must meet all criteria")
     @ApiResponse(responseCode = "200", description = "OK")
     public PostAnimalUniqueFeatures getLostAnimalsUniqueFeatures(@RequestParam(required = false) Integer animalTypeId,
                                                                   @RequestParam(required = false) Integer animalBreedId,
