@@ -28,7 +28,7 @@ public class AnimalImageService {
     }
 
     public List<AnimalImageInfo> getAnimalImageInfos(Integer animalId){
-        List<AnimalImage> animalImages = animalImageRepository.getAnimalImagesByAnimal_Id(animalId);
+        List<AnimalImage> animalImages = animalImageRepository.getAnimalImagesBy(animalId);
         return animalImageMapper.toAnimalImageInfos(animalImages);
     }
 }

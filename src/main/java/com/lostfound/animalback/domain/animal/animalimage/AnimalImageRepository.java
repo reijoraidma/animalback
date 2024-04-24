@@ -8,7 +8,7 @@ import java.util.List;
 public interface AnimalImageRepository extends JpaRepository<AnimalImage, Integer> {
 
     @Query("select a from AnimalImage a where a.animal.id = :animalId")
-    List<AnimalImage> getAnimalImagesByAnimal_Id(Integer animalId);
+    List<AnimalImage> getAnimalImagesBy(Integer animalId);
 
 
 }

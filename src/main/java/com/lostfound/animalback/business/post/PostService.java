@@ -61,7 +61,7 @@ public class PostService {
     private void addFirstAnimalImage(List<Post> animalPosts, List<PostFilter> filteredInfos) {
         for (Post post : animalPosts){
             Integer animalId = post.getAnimal().getId();
-            String animalImage = StringConverter.bytesToString(animalImageRepository.getAnimalImagesByAnimal_Id(animalId).getFirst().getImageData());
+            String animalImage = StringConverter.bytesToString(animalImageRepository.getAnimalImagesBy(animalId).getFirst().getImageData());
             for(PostFilter postFilter: filteredInfos){
                 if(postFilter.getPostId().equals(post.getId())){
                     postFilter.setAnimalImageData(animalImage);
