@@ -19,11 +19,15 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findSameAnimalBreedPostsBy(Integer animalBreedId, String postType);
 
     @Query("SELECT p FROM Post p WHERE " +
-            "(:postAnimalSize IS NULL OR :postAnimalSize = '' OR p.animal.size = :postAnimalSize) " +
+            "(:animalTypeId IS NULL OR :animalTypeId = 0 OR p.animal.animalType.id = :animalTypeId) " +
+            "AND (:animalBreedId IS NULL OR :animalBreedId = 0 OR p.animal.breed.id = :animalBreedId) " +
+            "AND (:postAnimalSize IS NULL OR :postAnimalSize = '' OR p.animal.size = :postAnimalSize) " +
             "AND (:postAnimalColor IS NULL OR :postAnimalColor = '' OR p.animal.color = :postAnimalColor) " +
             "AND (:postAnimalAge IS NULL OR :postAnimalAge = '' OR p.animal.age = :postAnimalAge) " +
             "AND p.type = :postType")
-    List<Post> findPostsWithOptionalParams( String postAnimalSize,
+    List<Post> findPostsWithOptionalParams( Integer animalTypeId,
+                                            Integer animalBreedId,
+                                            String postAnimalSize,
                                             String postAnimalColor,
                                             String postAnimalAge,
                                             String postType);

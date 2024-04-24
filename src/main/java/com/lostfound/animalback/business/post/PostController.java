@@ -1,7 +1,6 @@
 package com.lostfound.animalback.business.post;
 
 import com.lostfound.animalback.business.post.dto.PostFilter;
-import com.lostfound.animalback.business.post.dto.PostFilteringData;
 import com.lostfound.animalback.business.post.dto.PostInfo;
 import com.lostfound.animalback.business.post.dto.PostRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,10 +37,15 @@ public class PostController {
     }
 
     @GetMapping("/posts/found/postFilter")
-    @Operation(summary = "Get found animal info by filters ", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(size, color, age) for found animals")
+    @Operation(summary = "Get found animal info by filters ", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(animalTypeId,animalBreedId,size, color, age) for found animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getFoundPostInfoBy(@RequestBody PostFilteringData postFilteringData){
-        return postService.getPostInfoByFilter(postFilteringData, PostType.FOUND);
+    public List<PostFilter> getFoundPostInfoBy(@RequestParam(required = false) Integer animalTypeId,
+                                               @RequestParam(required = false) Integer animalBreedId,
+                                               @RequestParam(required = false) String postAnimalSize,
+                                               @RequestParam(required = false) String postAnimalColor,
+                                               @RequestParam(required = false) String postAnimalAge)
+    {
+        return postService.getPostInfoByFilter(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge, PostType.FOUND);
     }
 
     @GetMapping("/posts/lost")
@@ -66,10 +70,15 @@ public class PostController {
     }
 
     @GetMapping("/posts/lost/postFilter")
-    @Operation(summary = "Get lost animal info by filters", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(size, color, age) for lost animals")
+    @Operation(summary = "Get lost animal info by filters ", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(animalTypeId,animalBreedId,size, color, age) for lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getLostPostInfoBy(@RequestBody PostFilteringData postFilteringData){
-        return postService.getPostInfoByFilter(postFilteringData, PostType.LOST);
+    public List<PostFilter> getLostPostInfoBy(@RequestParam(required = false) Integer animalTypeId,
+                                               @RequestParam(required = false) Integer animalBreedId,
+                                               @RequestParam(required = false) String postAnimalSize,
+                                               @RequestParam(required = false) String postAnimalColor,
+                                               @RequestParam(required = false) String postAnimalAge)
+    {
+        return postService.getPostInfoByFilter(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge, PostType.LOST);
     }
 
     @PostMapping("/posts")
