@@ -11,7 +11,6 @@ import java.util.List;
 public interface AnimalImageMapper {
 
     @Named("toAnimalImage")
-    @Mapping(source = "animalId",target = "animal.id")
     @Mapping(expression = "java(StringConverter.stringToBytes(animalImageSave.getImageData()))", target = "imageData")
     AnimalImage toAnimalImage(AnimalImageSave animalImageSave);
     @IterableMapping(qualifiedByName = "toAnimalImage")

@@ -16,7 +16,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class AnimalImageSave implements Serializable {
     @NotNull
-    private Integer animalId;
-    @NotNull
     private String imageData;
 }

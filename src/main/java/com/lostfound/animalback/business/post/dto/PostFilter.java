@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * DTO for {@link com.lostfound.animalback.domain.post.Post}
@@ -15,7 +16,7 @@ import java.io.Serializable;
 public class PostFilter implements Serializable {
 
     private Integer postId;
-    private Integer postTimestamp;
+    private LocalDateTime postTimestamp;
     private String postCounty;
     private String animalImageData;
 }

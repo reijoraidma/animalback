@@ -15,13 +15,16 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostSave implements Serializable {
+public class PostRequest implements Serializable {
+    @NotNull
+    private String postType;
     @NotNull
     private Integer userId;
     @NotNull
     private Integer animalId;
     @NotNull
-    private Integer animalAnimalTypeId;
+    private Integer animalTypeId;
+    private Integer animalBreedId;
     private Integer animalGenderId;
     private String animalSize;
     private String animalAge;
@@ -34,4 +37,6 @@ public class PostSave implements Serializable {
     private String address;
     @Size(max = 255)
     private String info;
+    @NotNull
+    private String postAnimalImageData;
 }
