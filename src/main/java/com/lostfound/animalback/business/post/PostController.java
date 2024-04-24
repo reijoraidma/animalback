@@ -23,14 +23,14 @@ public class PostController {
     List<PostFilter> getFoundFilteredInfo(){
         return postService.getFilteredInfosBy(PostType.FOUND);
     }
-    @GetMapping("/posts/found/animaltype/{animalTypeId}")
+    @GetMapping("/posts/found/animaltypes/{animalTypeId}")
     @Operation(summary = "Get found animal info by animal type", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal type for found animals")
     @ApiResponse(responseCode = "200", description = "OK")
     List<PostFilter> getFoundFilteredInfoByAnimalType(@PathVariable Integer animalTypeId){
         return postService.getSameAnimalTypeFilteredInfosBy(animalTypeId, PostType.FOUND);
     }
 
-    @GetMapping("/posts/found/animalbreed/{animalBreedId}")
+    @GetMapping("/posts/found/animalbreeds/{animalBreedId}")
     @Operation(summary = "Get found animal info by animal breed", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal breed for found animals")
     @ApiResponse(responseCode = "200", description = "OK")
     List<PostFilter> getFoundPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
@@ -44,14 +44,14 @@ public class PostController {
         return postService.getFilteredInfosBy(PostType.LOST);
     }
 
-    @GetMapping("/posts/lost/animaltype/{animalTypeId}")
+    @GetMapping("/posts/lost/animaltypes/{animalTypeId}")
     @Operation(summary = "Get lost animal info by animal type", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal type for lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
     List<PostFilter> getLostPostInfoByAnimalType(@PathVariable Integer animalTypeId){
         return postService.getSameAnimalTypeFilteredInfosBy(animalTypeId, PostType.LOST);
     }
 
-    @GetMapping("/posts/lost/animalbreed/{animalBreedId}")
+    @GetMapping("/posts/lost/animalbreeds/{animalBreedId}")
     @Operation(summary = "Get lost animal info by animal breed", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal breed for lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
     List<PostFilter> getLostPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){

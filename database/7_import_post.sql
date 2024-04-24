@@ -1,0 +1,10 @@
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (1, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (2, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (3, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (4, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (5, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (6, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (7, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (8, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (9, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
+INSERT INTO animal.post (id, user_id, animal_id, type, status, timestamp, city, county, address, info) VALUES (10, 2, 1, 'F', 'A', 1, 'Tallinn', 'Harju', 'Aia 7 ', 'Info');
