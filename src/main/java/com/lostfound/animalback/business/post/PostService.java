@@ -1,6 +1,7 @@
 package com.lostfound.animalback.business.post;
 
 import com.lostfound.animalback.business.Status;
+import com.lostfound.animalback.business.post.dto.PostAnimalUniqueFeatures;
 import com.lostfound.animalback.business.post.dto.PostFilter;
 import com.lostfound.animalback.business.post.dto.PostInfo;
 import com.lostfound.animalback.business.post.dto.PostRequest;
@@ -57,6 +58,64 @@ public class PostService {
         List<PostFilter> filteredInfos = postMapper.toPostFilters(sameAnimalBreedPosts);
         addFirstAnimalImage(sameAnimalBreedPosts, filteredInfos);
         return filteredInfos;
+    }
+    public List<PostFilter> getPostInfoByFilter(Integer animalTypeId,Integer animalBreedId,String postAnimalSize,String postAnimalColor,String postAnimalAge, String postType) {
+        List<Post> postsFilter = postRepository.findPostsWithOptionalParams(
+                animalTypeId,
+                animalBreedId,
+                postAnimalSize,
+                postAnimalColor,
+                postAnimalAge,
+                postType);
+        List<PostFilter> filteredInfos = postMapper.toPostFilters(postsFilter);
+        addFirstAnimalImage(postsFilter, filteredInfos);
+        return filteredInfos;
+    }
+
+
+    public PostAnimalUniqueFeatures getAnimalsUniqueFeatures(Integer animalTypeId,
+                                                 Integer animalBreedId,
+                                                 String postAnimalSize,
+                                                 String postAnimalAge,
+                                                 String postAnimalColor,
+                                                 String found)
+    {
+        PostAnimalUniqueFeatures postAnimalUniqueFeatures = new PostAnimalUniqueFeatures();
+        postAnimalUniqueFeatures.setAnimalSizes(getAnimalsUniqueSizes(animalTypeId,animalBreedId,postAnimalSize,postAnimalAge,postAnimalColor,found));
+        postAnimalUniqueFeatures.setAnimalColors(getAnimalsUniqueColors(animalTypeId,animalBreedId,postAnimalSize,postAnimalAge,postAnimalColor,found));
+        postAnimalUniqueFeatures.setAnimalAges(getAnimalsUniqueAges(animalTypeId,animalBreedId,postAnimalSize,postAnimalAge,postAnimalColor,found));
+        return postAnimalUniqueFeatures;
+    }
+    public List<String> getAnimalsUniqueSizes(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge, String postType) {
+        List<String> postsAllAnimalSizes = postRepository.findSizesWithOptionalParams(
+                animalTypeId,
+                animalBreedId,
+                postAnimalSize,
+                postAnimalAge,
+                postAnimalColor,
+                postType);
+        return postsAllAnimalSizes.stream().distinct().toList();
+    }
+
+    public List<String> getAnimalsUniqueColors(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge, String postType) {
+        List<String> postsAllAnimalColors = postRepository.findColorsWithOptionalParams(
+                animalTypeId,
+                animalBreedId,
+                postAnimalSize,
+                postAnimalAge,
+                postAnimalColor,
+                postType);
+        return postsAllAnimalColors.stream().distinct().toList();
+    }
+    public List<String> getAnimalsUniqueAges(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge, String postType) {
+        List<String> postsAllAnimalAges = postRepository.findAgesWithOptionalParams(
+                animalTypeId,
+                animalBreedId,
+                postAnimalSize,
+                postAnimalAge,
+                postAnimalColor,
+                postType);
+        return postsAllAnimalAges.stream().distinct().toList();
     }
 
     private void addFirstAnimalImage(List<Post> animalPosts, List<PostFilter> filteredInfos) {
