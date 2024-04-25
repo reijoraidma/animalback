@@ -7,17 +7,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * DTO for {@link Post}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostRequest {
+public class PostChangeRequest implements Serializable {
     @NotNull
-    private String postType;
-    @NotNull
-    private Integer userId;
+    private Integer postId;
     @NotNull
     private Integer animalTypeId;
     private Integer animalBreedId;
@@ -33,6 +33,4 @@ public class PostRequest {
     private String address;
     @Size(max = 255)
     private String info;
-    @NotNull
-    private String postAnimalImageData;
 }

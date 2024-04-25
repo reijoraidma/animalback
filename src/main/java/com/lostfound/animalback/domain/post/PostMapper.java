@@ -1,5 +1,6 @@
 package com.lostfound.animalback.domain.post;
 
+import com.lostfound.animalback.business.post.dto.PostChangeRequest;
 import com.lostfound.animalback.business.post.dto.PostFilter;
 import com.lostfound.animalback.business.post.dto.PostInfo;
 import com.lostfound.animalback.business.post.dto.PostRequest;
@@ -36,4 +37,12 @@ public interface PostMapper {
     @Mapping(source = "animal.gender.type", target = "animalGenderType")
     @Mapping(source = "animal.id", target = "animalId")
     PostInfo toPostInfo(Post post);
+
+    @Mapping(source = "animalTypeId", target = "animalTypeId")
+    @Mapping(source = "animalBreedId", target = "animalBreedId")
+    @Mapping(source = "animalGenderId", target = "animalGenderId")
+    @Mapping(source = "animalSize", target = "animalSize")
+    @Mapping(source = "animalAge", target = "animalAge")
+    @Mapping(source = "animalColor", target = "animalColor")
+    PostRequest toPostRequest(PostChangeRequest postChangeRequest);
 }

@@ -1,9 +1,6 @@
 package com.lostfound.animalback.business.post;
 
-import com.lostfound.animalback.business.post.dto.PostAnimalUniqueFeatures;
-import com.lostfound.animalback.business.post.dto.PostFilter;
-import com.lostfound.animalback.business.post.dto.PostInfo;
-import com.lostfound.animalback.business.post.dto.PostRequest;
+import com.lostfound.animalback.business.post.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
@@ -17,6 +14,23 @@ public class PostController {
 
     private final PostService postService;
 
+    @PostMapping("/posts")
+    @Operation(summary = "Add new post", description = "Accepts lost or found posts. postType,userId,animalType,postAnimalImageData are mandatory. If animalType or animalBreed status is PENDING ('P') then post status will be PENDING ('P')")
+    @ApiResponse(responseCode = "200", description = "OK")
+    public void savePost(@RequestBody PostRequest postRequest){
+        postService.savePost(postRequest);
+    }
+
+    @PatchMapping("/posts")
+    @Operation(summary = "Change post", description = "Accepts lost or found posts. postId,animalTypeId are mandatory. If animalType or animalBreed status is PENDING ('P') then post status will be PENDING ('P')")
+    @ApiResponse(responseCode = "200", description = "OK")
+    public void changePost(@RequestBody PostChangeRequest postChangeRequest){
+        postService.changePost(postChangeRequest);
+    }
+    @GetMapping("/posts/{postId}")
+    public PostInfo getPost(@PathVariable Integer postId){
+        return postService.getPost(postId);
+    }
     @GetMapping("/posts/found")
     @Operation(summary = "Get all found animals info", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) for all found animals")
     @ApiResponse(responseCode = "200", description = "OK")
@@ -104,18 +118,4 @@ public class PostController {
     {
         return postService.getAnimalsUniqueFeatures(animalTypeId,animalBreedId,animalSize,postAnimalColor,postAnimalAge, PostType.LOST);
     }
-
-    @PostMapping("/posts")
-    @Operation(summary = "Add new post", description = "Accepts lost or found posts. postType,userId,animalId,animalType,postAnimalImageData are mandatory. If animalType or animalBreed status is PENDING ('P') then post status will be PENDING ('P')")
-    @ApiResponse(responseCode = "200", description = "OK")
-    public void savePost(@RequestBody PostRequest postRequest){
-        postService.savePost(postRequest);
-    }
-
-
-    @GetMapping("/posts/{postId}")
-    public PostInfo getPost(@PathVariable Integer postId){
-        return postService.getPost(postId);
-    }
-
 }
