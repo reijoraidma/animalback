@@ -1,10 +1,7 @@
 package com.lostfound.animalback.business.post;
 
 import com.lostfound.animalback.business.Status;
-import com.lostfound.animalback.business.post.dto.PostAnimalUniqueFeatures;
-import com.lostfound.animalback.business.post.dto.PostFilter;
-import com.lostfound.animalback.business.post.dto.PostInfo;
-import com.lostfound.animalback.business.post.dto.PostRequest;
+import com.lostfound.animalback.business.post.dto.*;
 import com.lostfound.animalback.domain.animal.Animal;
 import com.lostfound.animalback.domain.animal.AnimalRepository;
 import com.lostfound.animalback.domain.animal.animalgender.AnimalGenderRepository;
@@ -140,27 +137,11 @@ public class PostService {
     public void savePost(PostRequest postRequest) {
 
         Post post= postMapper.toPost(postRequest);
-
         User user = userRepository.getReferenceById(postRequest.getUserId());
         post.setUser(user);
+        Animal animal = createAnimalAndFillInfo(postRequest);
+        Animal savedAnimal = saveAnimalAndChangePostStatus(animal,post);
 
-        Animal animal = new Animal();
-        animal.setAnimalType(animalTypeRepository.getReferenceById(postRequest.getAnimalTypeId()));
-        animal.setBreed(breedRepository.getReferenceById(postRequest.getAnimalBreedId()));
-        animal.setGender(animalGenderRepository.getReferenceById(postRequest.getAnimalGenderId()));
-        animal.setSize(postRequest.getAnimalSize());
-        animal.setAge(postRequest.getAnimalAge());
-        animal.setColor(postRequest.getAnimalColor());
-        Animal savedAnimal = animalRepository.save(animal);
-        post.setAnimal(savedAnimal);
-
-        String animalTypeStatus = savedAnimal.getAnimalType().getStatus();
-        String animalBreedStatus = savedAnimal.getBreed().getStatus();
-        if(animalTypeStatus.equals(Status.PENDING) || animalBreedStatus.equals(Status.PENDING)){
-            post.setStatus(Status.PENDING);
-        }else {
-            post.setStatus(Status.ACTIVE);
-        }
         post.setTimestamp(LocalDateTime.now());
 
         AnimalImage animalImage = new AnimalImage();
@@ -169,6 +150,44 @@ public class PostService {
         animalImageRepository.save(animalImage);
 
         postRepository.save(post);
+    }
+    private Animal createAnimalAndFillInfo(PostRequest postRequest) {
+        Animal animal = new Animal();
+        fillAnimalInfo(postRequest, animal);
+        return animal;
+    }
 
+    @Transactional
+    public void changePost(PostChangeRequest postChangeRequest) {
+        Post post= postRepository.getReferenceById(postChangeRequest.getPostId());
+        Animal animal = animalRepository.getReferenceById(post.getAnimal().getId());
+        fillAnimalInfo(postMapper.toPostRequest(postChangeRequest),animal);
+        saveAnimalAndChangePostStatus(animal, post);
+        postRepository.save(post);
+    }
+    private void fillAnimalInfo(PostRequest postRequest, Animal animal) {
+        animal.setAnimalType(animalTypeRepository.getReferenceById(postRequest.getAnimalTypeId()));
+        animal.setBreed(breedRepository.getReferenceById(postRequest.getAnimalBreedId()));
+        animal.setGender(animalGenderRepository.getReferenceById(postRequest.getAnimalGenderId()));
+        animal.setSize(postRequest.getAnimalSize());
+        animal.setAge(postRequest.getAnimalAge());
+        animal.setColor(postRequest.getAnimalColor());
+    }
+
+    Animal saveAnimalAndChangePostStatus(Animal animal, Post post) {
+        Animal savedAnimal = animalRepository.save(animal);
+        post.setAnimal(savedAnimal);
+        String animalTypeStatus = savedAnimal.getAnimalType().getStatus();
+        String animalBreedStatus = savedAnimal.getBreed().getStatus();
+        changePostStatus(post, animalTypeStatus, animalBreedStatus);
+        return savedAnimal;
+    }
+
+    private static void changePostStatus(Post post, String animalTypeStatus, String animalBreedStatus) {
+        if(animalTypeStatus.equals(Status.PENDING) || animalBreedStatus.equals(Status.PENDING)){
+            post.setStatus(Status.PENDING);
+        }else {
+            post.setStatus(Status.ACTIVE);
+        }
     }
 }
