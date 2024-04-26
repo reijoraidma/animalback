@@ -229,4 +229,12 @@ public class PostService {
         postAnimalUniqueFeatures.setAnimalAges(getAnimalsUniqueAges(animalTypeId,animalBreedId,postAnimalSize,postAnimalAge,postAnimalColor,found));
         return postAnimalUniqueFeatures;
     }
+
+    public List<PostFilteredInfo> getLastPostsInfo(Integer postCount) {
+        List<Post> dateOrderedPosts = postRepository.findDateOrderedPosts();
+        List<Post> selectedNumberOfPosts = dateOrderedPosts.subList(0, Math.min(dateOrderedPosts.size(), postCount));
+        List<PostFilteredInfo> filteredInfos = postMapper.toPostFilteredInfos(selectedNumberOfPosts);
+        addFirstAnimalImage(selectedNumberOfPosts, filteredInfos);
+        return filteredInfos;
+    }
 }

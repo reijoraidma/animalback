@@ -12,6 +12,9 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query("select p from Post p where p.type = :postType order by p.timestamp desc")
     List<Post> findPostsBy(String postType);
 
+    @Query("select p from Post p order by p.timestamp desc")
+    List<Post> findDateOrderedPosts();
+
     @Query("select p from Post p where p.animal.animalType.id = :animalTypeId and p.type = :postType")
     List<Post> findSameAnimalTypePostsBy(Integer animalTypeId, String postType);
 
