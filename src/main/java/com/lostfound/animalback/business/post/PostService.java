@@ -14,6 +14,8 @@ import com.lostfound.animalback.domain.post.PostMapper;
 import com.lostfound.animalback.domain.post.PostRepository;
 import com.lostfound.animalback.domain.user.User;
 import com.lostfound.animalback.domain.user.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +36,7 @@ public class PostService {
     private final AnimalTypeRepository animalTypeRepository;
     private final AnimalGenderRepository animalGenderRepository;
     private final BreedRepository breedRepository;
+    private final EntityManager entityManager;
 
     private List<String> getAnimalsUniqueSizes(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge, String postType) {
         List<String> postsAllAnimalSizes = postRepository.findSizesWithOptionalParams(
@@ -230,11 +233,13 @@ public class PostService {
         return postAnimalUniqueFeatures;
     }
 
-    public List<PostFilteredInfo> getLastPostsInfo(Integer postCount) {
-        List<Post> dateOrderedPosts = postRepository.findDateOrderedPosts();
-        List<Post> selectedNumberOfPosts = dateOrderedPosts.subList(0, Math.min(dateOrderedPosts.size(), postCount));
-        List<PostFilteredInfo> filteredInfos = postMapper.toPostFilteredInfos(selectedNumberOfPosts);
-        addFirstAnimalImage(selectedNumberOfPosts, filteredInfos);
+    List<PostFilteredInfo> getDateOrderedPosts(Integer postCount) {
+        TypedQuery<Post> query = entityManager.createQuery(
+                "SELECT p FROM Post p ORDER BY p.timestamp DESC", Post.class);
+        query.setMaxResults(postCount);
+        List<Post> dateOrderedPosts = query.getResultList();
+        List<PostFilteredInfo> filteredInfos = postMapper.toPostFilteredInfos(dateOrderedPosts);
+        addFirstAnimalImage(dateOrderedPosts, filteredInfos);
         return filteredInfos;
     }
 }

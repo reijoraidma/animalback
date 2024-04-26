@@ -47,7 +47,7 @@ public class PostController {
     @Operation(summary = "Get a number of last added posts", description = "Returns list with asked number(postCount) of info(postId,postTimestamp,postCounty,animalImageData) for last added animals")
     @ApiResponse(responseCode = "200", description = "OK")
     public List<PostFilteredInfo> getLastPostsInfoBy(@PathVariable Integer postCount){
-        return postService.getLastPostsInfo(postCount);
+        return postService.getDateOrderedPosts(postCount);
     }
     @GetMapping("/posts/lost/animaltypes/{animalTypeId}")
     @Operation(summary = "Get lost animal info by animal type", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal type for lost animals")
