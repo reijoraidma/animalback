@@ -33,60 +33,60 @@ public class PostController {
     @GetMapping("/posts/lost")
     @Operation(summary = "Get all lost animals info", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) for all lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getLostFilteredInfo(){
+    public List<PostFilteredInfo> getLostFilteredInfo(){
         return postService.getLostFilteredInfo();
     }
     @GetMapping("/posts/found")
     @Operation(summary = "Get all found animals info", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) for all found animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getFoundFilteredInfo(){
+    public List<PostFilteredInfo> getFoundFilteredInfo(){
         return postService.getFoundFilteredInfo();
     }
     @GetMapping("/posts/lost/animaltypes/{animalTypeId}")
     @Operation(summary = "Get lost animal info by animal type", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal type for lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getLostPostInfoByAnimalType(@PathVariable Integer animalTypeId){
+    public List<PostFilteredInfo> getLostPostInfoByAnimalType(@PathVariable Integer animalTypeId){
         return postService.getLostPostInfoByAnimalType(animalTypeId);
     }
     @GetMapping("/posts/found/animaltypes/{animalTypeId}")
     @Operation(summary = "Get found animal info by animal type", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal type for found animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getFoundFilteredInfoByAnimalType(@PathVariable Integer animalTypeId){
+    public List<PostFilteredInfo> getFoundFilteredInfoByAnimalType(@PathVariable Integer animalTypeId){
         return postService.getFoundFilteredInfoByAnimalType(animalTypeId);
     }
 
     @GetMapping("/posts/found/animalbreeds/{animalBreedId}")
     @Operation(summary = "Get found animal info by animal breed", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal breed for found animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getFoundPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
+    public List<PostFilteredInfo> getFoundPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
         return postService.getFoundPostInfoByAnimalBreed(animalBreedId);
     }
     @GetMapping("/posts/lost/animalbreeds/{animalBreedId}")
     @Operation(summary = "Get lost animal info by animal breed", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by animal breed for lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    List<PostFilter> getLostPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
+    List<PostFilteredInfo> getLostPostInfoByAnimalBreed(@PathVariable Integer animalBreedId){
         return postService.getLostPostInfoByAnimalBreed(animalBreedId);
     }
 
     @GetMapping("/posts/found/postFilter")
     @Operation(summary = "Get found animal info by filters ", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(animalTypeId,animalBreedId,size, color, age) for found animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getFoundPostInfoBy(@RequestParam(required = false) Integer animalTypeId,
-                                               @RequestParam(required = false) Integer animalBreedId,
-                                               @RequestParam(required = false) String postAnimalSize,
-                                               @RequestParam(required = false) String postAnimalColor,
-                                               @RequestParam(required = false) String postAnimalAge)
+    public List<PostFilteredInfo> getFoundPostInfoBy(@RequestParam(required = false) Integer animalTypeId,
+                                                     @RequestParam(required = false) Integer animalBreedId,
+                                                     @RequestParam(required = false) String postAnimalSize,
+                                                     @RequestParam(required = false) String postAnimalColor,
+                                                     @RequestParam(required = false) String postAnimalAge)
     {
         return postService.getFoundPostInfoBy(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge);
     }
     @GetMapping("/posts/lost/postFilter")
     @Operation(summary = "Get lost animal info by filters ", description = "Returns list of info(postId,postTimestamp,postCounty,animalImageData) by filters(animalTypeId,animalBreedId,size, color, age) for lost animals")
     @ApiResponse(responseCode = "200", description = "OK")
-    public List<PostFilter> getLostPostInfoBy(@RequestParam(required = false) Integer animalTypeId,
-                                               @RequestParam(required = false) Integer animalBreedId,
-                                               @RequestParam(required = false) String postAnimalSize,
-                                               @RequestParam(required = false) String postAnimalColor,
-                                               @RequestParam(required = false) String postAnimalAge)
+    public List<PostFilteredInfo> getLostPostInfoBy(@RequestParam(required = false) Integer animalTypeId,
+                                                    @RequestParam(required = false) Integer animalBreedId,
+                                                    @RequestParam(required = false) String postAnimalSize,
+                                                    @RequestParam(required = false) String postAnimalColor,
+                                                    @RequestParam(required = false) String postAnimalAge)
     {
         return postService.getLostPostInfoBy(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge);
     }

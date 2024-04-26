@@ -26,6 +26,8 @@ public class PostRequest {
     private String animalAge;
     private String animalColor;
     @Size(max = 255)
+    private String title;
+    @Size(max = 255)
     private String city;
     @Size(max = 255)
     private String county;

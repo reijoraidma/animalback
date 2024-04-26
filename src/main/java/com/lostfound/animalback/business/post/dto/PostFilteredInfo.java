@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostFilter implements Serializable {
+public class PostFilteredInfo implements Serializable {
 
     private Integer postId;
-    private LocalDateTime postTimestamp;
+    private String title;
+    private String postTimestamp;
     private String postCounty;
     private String animalImageData;
 }

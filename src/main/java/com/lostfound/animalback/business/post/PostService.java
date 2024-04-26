@@ -67,13 +67,13 @@ public class PostService {
         return postsAllAnimalAges.stream().distinct().toList();
     }
 
-    private void addFirstAnimalImage(List<Post> animalPosts, List<PostFilter> filteredInfos) {
+    private void addFirstAnimalImage(List<Post> animalPosts, List<PostFilteredInfo> filteredInfos) {
         for (Post post : animalPosts){
             Integer animalId = post.getAnimal().getId();
             String animalImage = StringConverter.bytesToString(animalImageRepository.getAnimalImagesBy(animalId).getFirst().getImageData());
-            for(PostFilter postFilter: filteredInfos){
-                if(postFilter.getPostId().equals(post.getId())){
-                    postFilter.setAnimalImageData(animalImage);
+            for(PostFilteredInfo postFilteredInfo : filteredInfos){
+                if(postFilteredInfo.getPostId().equals(post.getId())){
+                    postFilteredInfo.setAnimalImageData(animalImage);
                 }
             }
         }
@@ -143,61 +143,60 @@ public class PostService {
         }
     }
 
-    public List<PostFilter> getFoundFilteredInfoByAnimalType(Integer animalTypeId) {
+    public List<PostFilteredInfo> getFoundFilteredInfoByAnimalType(Integer animalTypeId) {
         return getSameAnimalTypeFilteredInfosBy(animalTypeId, PostType.FOUND);
     }
 
-    public List<PostFilter> getLostPostInfoByAnimalType(Integer animalTypeId) {
+    public List<PostFilteredInfo> getLostPostInfoByAnimalType(Integer animalTypeId) {
         return getSameAnimalTypeFilteredInfosBy(animalTypeId, PostType.LOST);
     }
 
-    private List<PostFilter> getSameAnimalTypeFilteredInfosBy(Integer animalTypeId, String postType ) {
+    private List<PostFilteredInfo> getSameAnimalTypeFilteredInfosBy(Integer animalTypeId, String postType ) {
         List<Post> sameAnimalTypePosts = postRepository.findSameAnimalTypePostsBy(animalTypeId, postType);
-        List<PostFilter> filteredInfos = postMapper.toPostFilters(sameAnimalTypePosts);
+        List<PostFilteredInfo> filteredInfos = postMapper.toPostFilteredInfos(sameAnimalTypePosts);
         addFirstAnimalImage(sameAnimalTypePosts, filteredInfos);
         return filteredInfos;
     }
 
-    public List<PostFilter> getLostFilteredInfo() {
+    public List<PostFilteredInfo> getLostFilteredInfo() {
         return getFilteredInfosBy(PostType.LOST);
     }
 
-    public List<PostFilter> getFoundFilteredInfo() {
+    public List<PostFilteredInfo> getFoundFilteredInfo() {
         return getFilteredInfosBy(PostType.FOUND);
     }
 
-    private List<PostFilter> getFilteredInfosBy(String postType) {
-
+    private List<PostFilteredInfo> getFilteredInfosBy(String postType) {
         List<Post> animalPosts = postRepository.findPostsBy(postType);
-        List<PostFilter> filteredInfos = postMapper.toPostFilters(animalPosts);
+        List<PostFilteredInfo> filteredInfos = postMapper.toPostFilteredInfos(animalPosts);
         addFirstAnimalImage(animalPosts, filteredInfos);
         return filteredInfos;
     }
 
-    public List<PostFilter> getFoundPostInfoByAnimalBreed(Integer animalBreedId) {
+    public List<PostFilteredInfo> getFoundPostInfoByAnimalBreed(Integer animalBreedId) {
         return getFilteredInfosBy(animalBreedId, PostType.FOUND);
     }
-    public List<PostFilter> getLostPostInfoByAnimalBreed(Integer animalBreedId) {
+    public List<PostFilteredInfo> getLostPostInfoByAnimalBreed(Integer animalBreedId) {
         return getFilteredInfosBy(animalBreedId, PostType.LOST);
     }
 
-    private List<PostFilter> getFilteredInfosBy(Integer animalBreedId, String postType) {
+    private List<PostFilteredInfo> getFilteredInfosBy(Integer animalBreedId, String postType) {
 
         List<Post> sameAnimalBreedPosts = postRepository.findSameAnimalBreedPostsBy(animalBreedId, postType);
-        List<PostFilter> filteredInfos = postMapper.toPostFilters(sameAnimalBreedPosts);
+        List<PostFilteredInfo> filteredInfos = postMapper.toPostFilteredInfos(sameAnimalBreedPosts);
         addFirstAnimalImage(sameAnimalBreedPosts, filteredInfos);
         return filteredInfos;
     }
 
-    public List<PostFilter> getFoundPostInfoBy(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge) {
+    public List<PostFilteredInfo> getFoundPostInfoBy(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge) {
         return getPostInfoByFilter(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge, PostType.FOUND);
     }
 
-    public List<PostFilter> getLostPostInfoBy(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge) {
+    public List<PostFilteredInfo> getLostPostInfoBy(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge) {
         return getPostInfoByFilter(animalTypeId,animalBreedId,postAnimalSize,postAnimalColor,postAnimalAge, PostType.LOST);
     }
 
-    private List<PostFilter> getPostInfoByFilter(Integer animalTypeId,Integer animalBreedId,String postAnimalSize,String postAnimalColor,String postAnimalAge, String postType) {
+    private List<PostFilteredInfo> getPostInfoByFilter(Integer animalTypeId, Integer animalBreedId, String postAnimalSize, String postAnimalColor, String postAnimalAge, String postType) {
         List<Post> postsFilter = postRepository.findPostsWithOptionalParams(
                 animalTypeId,
                 animalBreedId,
@@ -205,7 +204,7 @@ public class PostService {
                 postAnimalColor,
                 postAnimalAge,
                 postType);
-        List<PostFilter> filteredInfos = postMapper.toPostFilters(postsFilter);
+        List<PostFilteredInfo> filteredInfos = postMapper.toPostFilteredInfos(postsFilter);
         addFirstAnimalImage(postsFilter, filteredInfos);
         return filteredInfos;
     }

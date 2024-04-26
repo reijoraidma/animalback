@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,6 +21,7 @@ public class Post {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -29,6 +31,10 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
+
+    @Size(max = 255)
+    @Column(name = "title")
+    private String title;
 
     @NotNull
     @Column(name = "type", nullable = false, length = Integer.MAX_VALUE)

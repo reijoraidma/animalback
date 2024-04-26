@@ -62,6 +62,7 @@ CREATE TABLE post (
                       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
                       user_id int  NOT NULL,
                       animal_id int  NOT NULL,
+                      title varchar(255)  NULL,
                       type char(1)  NOT NULL,
                       status char(1)  NOT NULL,
                       timestamp TIMESTAMP  NOT NULL,
