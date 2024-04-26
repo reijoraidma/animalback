@@ -26,5 +26,7 @@ public class PostInfo implements Serializable {
     private String county;
     private Integer animalId;
     private String info;
+    private String type;
+
 
 }

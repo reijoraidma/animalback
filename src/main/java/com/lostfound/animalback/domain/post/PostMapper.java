@@ -43,7 +43,7 @@ public interface PostMapper {
     @Mapping(source = "animal.id", target = "animalId")
     @Mapping(source = "info", target = "info")
     @Mapping(source = "title", target = "title")
-
+    @Mapping(source = "type", target = "type")
     PostInfo toPostInfo(Post post);
 
     @Mapping(source = "animalTypeId", target = "animalTypeId")

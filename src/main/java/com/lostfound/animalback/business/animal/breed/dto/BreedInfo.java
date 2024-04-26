@@ -15,4 +15,5 @@ import java.io.Serializable;
 public class BreedInfo implements Serializable {
     private Integer breedId;
     private String breedName;
+    private String breedImageData;
 }
