@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostInfo implements Serializable {
+    private String title;
     private String animalTypeName;
     private String animalGenderType;
     private String animalBreedType;
@@ -24,4 +25,6 @@ public class PostInfo implements Serializable {
     private String animalColor;
     private String county;
     private Integer animalId;
+    private String info;
+
 }

@@ -41,6 +41,9 @@ public interface PostMapper {
     @Mapping(source = "county", target = "county")
     @Mapping(source = "animal.gender.type", target = "animalGenderType")
     @Mapping(source = "animal.id", target = "animalId")
+    @Mapping(source = "info", target = "info")
+    @Mapping(source = "title", target = "title")
+
     PostInfo toPostInfo(Post post);
 
     @Mapping(source = "animalTypeId", target = "animalTypeId")

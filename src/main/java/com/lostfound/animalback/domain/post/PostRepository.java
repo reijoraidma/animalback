@@ -72,4 +72,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
                                               String postAnimalAge,
                                               String postAnimalColor,
                                               String postType);
+
+
 }
