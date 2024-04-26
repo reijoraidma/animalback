@@ -20,10 +20,10 @@ public class BreedController {
         return breedService.getAnimalBreeds(animalTypeId);
     }
 
-    @Operation(summary = "Lisab uued tõu")
+    @Operation(summary = "Lisab uue tõu")
     @PostMapping("/animal/breed")
-    public void addAnimalBreed(@RequestBody @Valid BreedRequest breedRequest) {
-        breedService.addAnimalBreed(breedRequest);
+    public Integer addAnimalBreed(@RequestBody @Valid BreedRequest breedRequest) {
+        return breedService.addAnimalBreed(breedRequest);
     }
 
     @Operation(summary = "Muudab tõu staatuse")

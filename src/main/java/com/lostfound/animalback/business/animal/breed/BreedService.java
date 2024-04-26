@@ -31,7 +31,7 @@ public class BreedService {
         return breedMapper.toBreedInfos(breeds);
     }
 
-    public void addAnimalBreed(BreedRequest breedRequest) {
+    public Integer addAnimalBreed(BreedRequest breedRequest) {
         AnimalType animalType = animalTypeRepository.getReferenceById(breedRequest.getAnimalTypeId());
         Breed breed = breedMapper.toBreed(breedRequest);
         breed.setAnimalType(animalType);
@@ -40,6 +40,7 @@ public class BreedService {
             throw new ForbiddenException(BREED_ALREADY_EXISTS.getMessage(), BREED_ALREADY_EXISTS.getErrorCode());
         } else {
             breedRepository.save(breed);
+            return breed.getId();
         }
     }
 
