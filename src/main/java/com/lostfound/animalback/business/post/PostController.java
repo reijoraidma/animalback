@@ -27,6 +27,8 @@ public class PostController {
         postService.changePost(postChangeRequest);
     }
     @GetMapping("/posts/{postId}")
+    @Operation(summary = "Get post info", description = "Get post info (title, title, animalTypeName, animalGenderType, animalSize, animalAge, animalBreedType, county, animalColor, animalId, info, type) by post id ")
+    @ApiResponse(responseCode = "200", description = "OK")
     public PostInfo getPost(@PathVariable Integer postId){
         return postService.getPost(postId);
     }
